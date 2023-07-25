@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 import Navbar from "@/components/Navbar";
 import Home from "@/components/Home";
+import AboutUs from "@/components/AboutUs";
 
 export default function Index() {
   const [activeSection, setActiveSection] = useState("Home");
@@ -44,6 +45,7 @@ export default function Index() {
       />
 
       <Home />
+      <AboutUs />
     </div>
   );
 }
