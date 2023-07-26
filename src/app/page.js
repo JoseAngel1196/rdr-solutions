@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar";
 import Home from "@/components/Home";
 import AboutUs from "@/components/AboutUs";
 import LogoBar from "@/components/LogoBar";
+import OurProducts from "@/components/OurProducts";
 
 export default function Index() {
   const [activeSection, setActiveSection] = useState("Home");
@@ -48,6 +49,7 @@ export default function Index() {
       <Home />
       <AboutUs />
       <LogoBar />
+      <OurProducts />
     </div>
   );
 }
