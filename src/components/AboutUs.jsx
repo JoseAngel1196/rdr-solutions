@@ -13,7 +13,7 @@ const AboutUs = () => {
       />
 
       <div className="flex flex-col justify-center items-center">
-        <h2 className="w-[248px] md:w-full text-center lg:text-start text-indigo-800 text-3xl font-bold tracking-tight pb-[22px]">
+        <h2 className="w-[248px] md:w-full text-center lg:text-start text-[#0E5F8C] text-3xl font-bold tracking-tight pb-[22px]">
           About Us
         </h2>
         <p className="w-[248px] md:w-full text-neutral-800 text-base font-normal">

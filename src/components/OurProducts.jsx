@@ -31,7 +31,7 @@ const products = [
 const OurProducts = () => {
   return (
     <section id="OurProducts" className="py-[100px]">
-      <h2 className="text-center text-sky-800 text-[40px] font-bold tracking-tight">
+      <h2 className="text-center text-[#0E5F8C] text-[40px] font-bold tracking-tight">
         Our Products
       </h2>
 
@@ -47,7 +47,7 @@ const OurProducts = () => {
                 src={product.img}
                 width={200}
                 height={200}
-                className="rounded-[100px] shadow-2xl w-[200px] h-[200px] object-cover"
+                className="rounded-[100px] shadow-lg w-[200px] h-[200px] object-cover"
                 alt={product.name}
               />
               <p className="text-center text-neutral-800 text-[22px] font-bold leading-[25px] tracking-tight">
@@ -59,7 +59,7 @@ const OurProducts = () => {
       </div>
 
       <div className="flex justify-center items-center">
-        <button className="w-56 h-[51px] px-[50px] py-[15px] bg-indigo-800 rounded-[50px] shadow-2xl gap-2 text-center text-stone-50 text-base font-semibold capitalize leading-tight">
+        <button className="w-56 h-[51px] px-[50px] py-[15px] bg-[#3E5D9D] rounded-[50px] shadow-lg gap-2 text-center text-stone-50 text-base font-semibold capitalize leading-tight">
           View Catalogue
         </button>
       </div>
