@@ -19,12 +19,12 @@ const AboutUs = () => {
         <p className="w-[248px] md:w-full text-neutral-800 text-base font-normal">
           We sell cleaning, personal care, and food products with a focus on
           quality, innovation, and service. Our goal is to improve our
-          customers&apos; lives and we have a dedicated team to help us achieve that.
+          customers' lives and we have a dedicated team to help us achieve that.
           Our products are trusted by our customers.
           <br />
           We sell cleaning, personal care, and food products with a focus on
           quality, innovation, and service. Our goal is to improve our
-          customers&apos; lives and we have a dedicated team to help us achieve that.
+          customers' lives and we have a dedicated team to help us achieve that.
           Our products are trusted by our customers.
           <br />
         </p>
