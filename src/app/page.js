@@ -8,6 +8,7 @@ import AboutUs from "@/components/AboutUs";
 import LogoBar from "@/components/LogoBar";
 import OurProducts from "@/components/OurProducts";
 import OurServices from "@/components/OurServices";
+import Tastings from "@/components/Tastings";
 
 export default function Index() {
   const [activeSection, setActiveSection] = useState("Home");
@@ -52,6 +53,7 @@ export default function Index() {
       <LogoBar />
       <OurProducts />
       <OurServices />
+      <Tastings />
     </div>
   );
 }

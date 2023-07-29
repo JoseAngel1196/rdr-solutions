@@ -1,5 +1,5 @@
-import Image from "next/image";
 import React from "react";
+import Image from "next/image";
 
 const items = [
   {
@@ -26,7 +26,7 @@ const items = [
 
 const OurServices = () => {
   return (
-    <div className="flex justify-center items-center">
+    <div className="flex justify-center items-center pb-[72px]">
       <div className="flex flex-col items-center  bg-[#3E5D9D] px-[1.25rem] md:px-[59px] py-[4.5rem] rounded-[2.5rem] w-[90vw] gap-[2.5rem] shadow-2xl">
         <div className="flex flex-col items-center gap-[1.8125rem] self-stretch">
           <h2 className="text-center text-white text-[2.5rem] font-bold tracking-tight">
