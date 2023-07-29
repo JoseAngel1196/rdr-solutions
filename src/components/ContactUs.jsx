@@ -7,12 +7,12 @@ const ContactUs = () => {
       <div className="flex flex-col gap-[54px]">
         <div className="flex flex-col gap-[20px]">
           <h2 className="text-[40px] font-bold tracking-[0.4px]">
-            Let’s Talk Business!
+            Let&apos;s Talk Business!
           </h2>
 
           <p className="text-[16px]">
             Have some big idea or brand to develop and need help? Then reach out
-            we'd love to hear about your project and provide help
+            we&apos;d love to hear about your project and provide help
           </p>
         </div>
 
