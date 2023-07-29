@@ -35,7 +35,7 @@ const OurProducts = () => {
         Our Products
       </h2>
 
-      <div className="flex flex-row items-center justify-start py-[60px] overflow-x-auto scroll-smooth">
+      <div className="flex flex-row items-center justify-start xl:justify-center py-[60px] overflow-x-auto scroll-smooth">
         {products.map((product, i) => (
           <div key={product.id}>
             <div
@@ -59,7 +59,7 @@ const OurProducts = () => {
       </div>
 
       <div className="flex justify-center items-center">
-        <button className="w-56 h-[51px] px-[50px] py-[15px] bg-[#3E5D9D] rounded-[50px] shadow-lg gap-2 text-center text-stone-50 text-base font-semibold capitalize leading-tight">
+        <button className="w-[15rem] h-[51px] px-[50px] py-[15px] bg-[#3E5D9D] rounded-[50px] shadow-lg gap-2 text-center text-stone-50 text-base font-semibold capitalize leading-tight">
           View Catalogue
         </button>
       </div>
