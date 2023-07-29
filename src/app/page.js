@@ -10,6 +10,7 @@ import OurProducts from "@/components/OurProducts";
 import OurServices from "@/components/OurServices";
 import Tastings from "@/components/Tastings";
 import ContactUs from "@/components/ContactUs";
+import Footer from "@/components/Footer";
 
 export default function Index() {
   const [activeSection, setActiveSection] = useState("Home");
@@ -56,6 +57,7 @@ export default function Index() {
       <OurServices />
       <Tastings />
       <ContactUs />
+      <Footer />
     </div>
   );
 }
