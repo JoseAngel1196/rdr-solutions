@@ -5,12 +5,14 @@ import { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
 import Home from "@/components/Home";
 import AboutUs from "@/components/AboutUs";
-import LogoBar from "@/components/LogoBar";
-import OurProducts from "@/components/OurProducts";
+// import LogoBar from "@/components/LogoBar";
+// import OurProducts from "@/components/OurProducts";
 import OurServices from "@/components/OurServices";
-import Tastings from "@/components/Tastings";
+// import Tastings from "@/components/Tastings";
 import ContactUs from "@/components/ContactUs";
 import Footer from "@/components/Footer";
+import GlobalBrands from "@/components/GlobalBrands";
+import LocalBrands from "@/components/LocalBrands";
 
 export default function Index() {
   const [activeSection, setActiveSection] = useState("Home");
@@ -51,11 +53,13 @@ export default function Index() {
       />
 
       <Home />
-      <AboutUs />
-      <LogoBar />
-      <OurProducts />
       <OurServices />
-      <Tastings />
+      <AboutUs />
+      <GlobalBrands />
+      <LocalBrands />
+      {/* <LogoBar /> */}
+      {/* <OurProducts /> */}
+      {/* <Tastings /> */}
       <ContactUs />
       <Footer />
     </div>
