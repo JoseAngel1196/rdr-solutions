@@ -21,6 +21,46 @@ header .nav-btn {
   font-size: 1.8rem;
 }
 
+.servicesEllipsis {
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* Número máximo de líneas que se mostrarán */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.modal[open] {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  border: none;
+  outline: none;
+  background-color: #fff;
+  color: black;
+  padding: 2rem;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+
+  &::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  @media only screen and (min-width: 1024px) {
+    width: 70%;
+  }
+
+  @media only screen and (min-width: 1280px) {
+    width: 50%;
+  }
+  @media only screen and (min-width: 1536px) {
+    width: 40%;
+  }
+}
+
 @media only screen and (max-width: 767px) {
   header .nav-btn {
     visibility: visible;
