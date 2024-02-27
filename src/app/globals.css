@@ -81,7 +81,7 @@ header .nav-btn {
     gap: 1.5rem;
     background-color: #3e5d9d;
     transition: 1s;
-    z-index: 9999;
+    z-index: 10;
   }
 
   header .responsive_nav {

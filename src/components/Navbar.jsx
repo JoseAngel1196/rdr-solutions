@@ -23,17 +23,17 @@ const Navbar = ({ activeSection, setActiveSection, goToSection }) => {
   };
 
   return (
-    <header className="flex justify-between items-center pt-[30px] pb-[10px]">
+    <header className="bg-white sticky top-0 z-[5] flex justify-between items-center mt-[30px] mb-[10px] mx-3 md:mx-8 lg:mx-0 p-5 rounded-lg">
       <Image
         src={"/assets/images/Logo.webp"}
         width={315}
         height={90}
         alt="logo"
         priority
-        className="w-[140px] h-[40px] cursor-pointer ml-12"
+        className="w-[140px] h-[40px] cursor-pointer md:ml-5 lg:ml-12"
       />
 
-      <nav ref={navRef} className="flex justify-end gap-[50px] mr-8 lg:mr-0">
+      <nav ref={navRef} className="flex justify-end gap-[20px] lg:gap-[50px]">
         <Link
           href={"#Home"}
           onClick={(e) => {
@@ -111,7 +111,7 @@ const Navbar = ({ activeSection, setActiveSection, goToSection }) => {
         type="button"
         title="menuIcon"
         onClick={showNavbar}
-        className="nav-btn mr-10"
+        className="nav-btn"
       >
         <FaBars color="#3E5D9D" />
       </button>

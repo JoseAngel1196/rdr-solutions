@@ -45,7 +45,7 @@ export default function Index() {
   }, [activeSection]);
 
   return (
-    <div className="bg-white max-w-screen-xl mx-auto">
+    <div className="container mx-auto">
       <Navbar
         activeSection={activeSection}
         setActiveSection={setActiveSection}
@@ -55,8 +55,8 @@ export default function Index() {
       <Home />
       <OurServices />
       <AboutUs />
-      <GlobalBrands />
-      <LocalBrands />
+      {/* <GlobalBrands /> */}
+      {/* <LocalBrands /> */}
       {/* <LogoBar /> */}
       {/* <OurProducts /> */}
       {/* <Tastings /> */}
