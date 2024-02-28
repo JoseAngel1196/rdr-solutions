@@ -3,7 +3,7 @@ import Image from "next/image";
 const OurBrands = () => {
   return (
     <div className="bg-white py-[40px] flex flex-col justify-center font-header">
-      <h2 className="text-center text-[#0E5F8C] text-[2.5rem] font-medium tracking-tight">
+      <h2 className="text-center text-[#0E5F8C] text-[2.5rem] font-header font-medium tracking-tight">
         Our Brands
       </h2>
 

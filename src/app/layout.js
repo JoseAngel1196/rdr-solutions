@@ -1,5 +1,10 @@
-import "./globals.css";
+"use client";
+import { useEffect } from "react";
+
 import { Poppins, Fraunces } from "next/font/google";
+import { AnimatePresence } from "framer-motion";
+
+import "./globals.css";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -19,11 +24,17 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <html lang="en" className="bg-[#3E5D9D]">
-      <body className={`${poppins.variable} ${fraunces.variable}`}>
-        {children}
-      </body>
+      <AnimatePresence>
+        <body className={`${poppins.variable} ${fraunces.variable}`}>
+          {children}
+        </body>
+      </AnimatePresence>
     </html>
   );
 }

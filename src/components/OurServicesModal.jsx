@@ -1,14 +1,16 @@
 import { useLayoutEffect } from "react";
 import Image from "next/image";
 
+import { motion } from "framer-motion";
+
 import { AiOutlineCloseCircle } from "react-icons/ai";
 
-const OurServicesModal = ({ item, open, onClose, modal }) => {
+const OurServicesModal = ({ item, setModalItem, modal }) => {
   const lines = item.text.split("\n");
 
   useLayoutEffect(() => {
     const closeListenerFnc = () => {
-      onClose && onClose();
+      setModalItem(null);
     };
 
     const dialogRef = modal.current;
@@ -17,18 +19,30 @@ const OurServicesModal = ({ item, open, onClose, modal }) => {
     return () => {
       dialogRef?.removeEventListener("close", closeListenerFnc);
     };
-  }, [onClose]);
+  }, [modal, setModalItem]);
 
   useLayoutEffect(() => {
-    if (open && !modal.current?.open) {
+    if (item && !modal.current?.open) {
       modal.current?.showModal();
-    } else if (!open && modal.current?.open) {
-      modal.current?.close();
+    } else if (!item && modal.current?.open) {
+      setModalItem(null);
     }
-  }, [open]);
+  }, [item, modal, setModalItem]);
 
   return (
-    <dialog
+    <motion.dialog
+      initial={{
+        opacity: 0,
+      }}
+      animate={{
+        opacity: 1,
+      }}
+      exit={{
+        opacity: 0,
+      }}
+      transition={{
+        duration: 0.3,
+      }}
       ref={modal}
       autoFocus={false}
       onClick={(e) => {
@@ -39,7 +53,7 @@ const OurServicesModal = ({ item, open, onClose, modal }) => {
           e.clientY < dialogDimensions.top ||
           e.clientY > dialogDimensions.bottom
         ) {
-          e.currentTarget.close();
+          setModalItem(null);
         }
       }}
       className="modal"
@@ -48,12 +62,41 @@ const OurServicesModal = ({ item, open, onClose, modal }) => {
         className="absolute top-3 right-4 text-xl text-[#3E5D9D] cursor-pointer transition-all active:scale-95"
         size={30}
         onClick={() => {
-          onClose && onClose();
+          setModalItem(null);
         }}
       />
 
-      <div className="flex flex-col items-center p-2 gap-[1.25rem] self-stretch rounded-[20px] bg-[#F9F9F9] overflow-hidden">
-        <span className="flex flex-col justify-center items-center gap-[10px] w-[72px] h-[72px] rounded-[2000px]">
+      <motion.div
+        onClick={(e) => e.stopPropagation()}
+        initial={{
+          opacity: 0,
+        }}
+        animate={{
+          opacity: 1,
+        }}
+        exit={{
+          opacity: 0,
+        }}
+        transition={{
+          duration: 0.2,
+        }}
+        className="flex flex-col items-center p-2 gap-[1.25rem] self-stretch rounded-[20px] bg-[#F9F9F9] overflow-hidden"
+      >
+        <motion.span
+          initial={{
+            opacity: 0,
+          }}
+          animate={{
+            opacity: 1,
+          }}
+          exit={{
+            opacity: 0,
+          }}
+          transition={{
+            duration: 0.2,
+          }}
+          className="flex flex-col justify-center items-center gap-[10px] w-[72px] h-[72px] rounded-[2000px]"
+        >
           <Image
             src={`/assets/images/${item.logo}.svg`}
             width={66}
@@ -61,9 +104,23 @@ const OurServicesModal = ({ item, open, onClose, modal }) => {
             alt="icon"
             priority
           />
-        </span>
+        </motion.span>
 
-        <span className="flex flex-col justify-center items-center gap-[24px]">
+        <motion.span
+          initial={{
+            opacity: 0,
+          }}
+          animate={{
+            opacity: 1,
+          }}
+          exit={{
+            opacity: 0,
+          }}
+          transition={{
+            duration: 0.2,
+          }}
+          className="flex flex-col justify-center items-center gap-[24px]"
+        >
           <h4 className="self-stretch text-[#3E5D9D] text-center text-[28px] font-bold leading-[25px] tracking-[0.28px]">
             {item.title}
           </h4>
@@ -82,9 +139,9 @@ const OurServicesModal = ({ item, open, onClose, modal }) => {
               <li key={index}>{line.trim()}</li>
             )
           )}
-        </span>
-      </div>
-    </dialog>
+        </motion.span>
+      </motion.div>
+    </motion.dialog>
   );
 };
 
