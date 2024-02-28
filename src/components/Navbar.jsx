@@ -23,7 +23,7 @@ const Navbar = ({ activeSection, setActiveSection, goToSection }) => {
   };
 
   return (
-    <header className="bg-white sticky top-0 z-[5] flex justify-between items-center mt-[30px] mb-[10px] mx-3 md:mx-8 lg:mx-0 p-5 rounded-lg">
+    <header className="bg-white sticky top-0 z-[5] flex justify-between items-center lg:mb-[10px] p-5 font-sans">
       <Image
         src={"/assets/images/Logo.webp"}
         width={315}

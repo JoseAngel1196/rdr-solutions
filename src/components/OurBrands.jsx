@@ -1,0 +1,119 @@
+import Image from "next/image";
+
+const OurBrands = () => {
+  return (
+    <div className="bg-white py-[40px] flex flex-col justify-center font-header">
+      <h2 className="text-center text-[#0E5F8C] text-[2.5rem] font-medium tracking-tight">
+        Our Brands
+      </h2>
+
+      <div className="grid grid-cols-2 md:grid-cols-1">
+        <div className="flex flex-col md:flex-row items-center justify-center">
+          <div className="items-center justify-center p-[0_20px] md:p-[10px_20px] lg:p-[10px_30px] 2xl:p-[10px_50px]">
+            <Image
+              src={"/assets/images/Brands/Bambu_logo.webp"}
+              width={500}
+              height={500}
+              alt="Bambú logo"
+              className="grayscale h-[80px] w-full md:max-w-[100px] object-contain md:scale-125"
+            />
+          </div>
+
+          <div className="items-center justify-center p-[0_20px] md:p-[10px_20px] lg:p-[10px_30px] 2xl:p-[10px_50px]">
+            <Image
+              src={"/assets/images/Brands/Colgate_logo.webp"}
+              width={500}
+              height={500}
+              alt="Colgate logo"
+              className="grayscale h-[80px] w-full md:max-w-[100px] object-contain md:scale-125"
+            />
+          </div>
+
+          <div className="items-center justify-center p-[0_20px] md:p-[10px_20px] lg:p-[10px_30px] 2xl:p-[10px_50px]">
+            <Image
+              src={"/assets/images/Brands/Fabuloso_logo.webp"}
+              width={500}
+              height={500}
+              alt="Fabuloso logo"
+              className="grayscale h-[80px] w-full md:max-w-[100px] object-contain md:scale-110"
+            />
+          </div>
+
+          <div className="items-center justify-center p-[0_20px] md:p-[10px_20px] lg:p-[10px_30px] 2xl:p-[10px_50px]">
+            <Image
+              src={"/assets/images/Brands/Ajax_logo.webp"}
+              width={500}
+              height={500}
+              alt="Ajax logo"
+              className="grayscale h-[80px] w-full md:max-w-[100px] object-contain"
+            />
+          </div>
+
+          <div className="items-center justify-center p-[0_20px] md:p-[10px_20px] lg:p-[10px_30px] 2xl:p-[10px_50px]">
+            <Image
+              src={"/assets/images/Brands/Guarina_logo.webp"}
+              width={500}
+              height={500}
+              alt="Guarina logo"
+              className="grayscale h-[80px] w-full md:max-w-[100px] object-contain md:scale-125"
+            />
+          </div>
+        </div>
+
+        <div className="flex flex-col md:flex-row items-center justify-center">
+          <div className="items-center justify-center p-[0_20px] md:p-[10px_20px] lg:p-[10px_30px] 2xl:p-[10px_50px]">
+            <Image
+              src={"/assets/images/Brands/Lavador_logo.webp"}
+              width={500}
+              height={500}
+              alt="Lavador logo"
+              className="grayscale h-[80px] w-full md:max-w-[100px] object-contain scale-[2.0] md:scale-[1.8]"
+            />
+          </div>
+
+          <div className="items-center justify-center p-[0_20px] md:p-[10px_20px] lg:p-[10px_30px] 2xl:p-[10px_50px]">
+            <Image
+              src={"/assets/images/Brands/Palmolive_logo.webp"}
+              width={500}
+              height={500}
+              alt="Palmolive logo"
+              className="grayscale h-[80px] w-full md:max-w-[100px] object-contain"
+            />
+          </div>
+
+          <div className="items-center justify-center p-[0_20px] md:p-[10px_20px] lg:p-[10px_30px] 2xl:p-[10px_50px]">
+            <Image
+              src={"/assets/images/Brands/Tips_calbaq_logo.webp"}
+              width={500}
+              height={500}
+              alt="Tips Calbaq logo"
+              className="grayscale h-[80px] w-full md:max-w-[100px] object-contain scale-125 md:scale-150"
+            />
+          </div>
+
+          <div className="items-center justify-center p-[0_20px] md:p-[10px_20px] lg:p-[10px_30px] 2xl:p-[10px_50px]">
+            <Image
+              src={"/assets/images/Brands/Fiori_Bruna_logo.webp"}
+              width={500}
+              height={500}
+              alt="Fiori Bruna logo"
+              className="grayscale h-[80px] w-full md:max-w-[100px] object-contain md:scale-125 xl:scale-150"
+            />
+          </div>
+
+          <div className="items-center justify-center p-[0_20px] md:p-[10px_20px] lg:p-[10px_30px] 2xl:p-[10px_50px]">
+            <Image
+              src={"/assets/images/Brands/Suavitel_logo.webp"}
+              width={500}
+              height={500}
+              alt="Suavitel logo"
+              className="grayscale h-[80px] w-full md:max-w-[100px] object-contain scale-150"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default OurBrands;
