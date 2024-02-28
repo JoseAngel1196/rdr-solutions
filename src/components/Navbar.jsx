@@ -41,6 +41,7 @@ const Navbar = ({ activeSection, setActiveSection, goToSection }) => {
             handleNavClick("Home");
             hideNavbar();
             goToSection("Home");
+            window.scrollTo(0, 0);
           }}
           className={
             activeSection === "Home"

@@ -11,6 +11,7 @@ const Footer = () => {
   return (
     <div className="bg-[#3E5D9D] flex flex-col md:flex-row justify-center md:justify-between items-center py-[24px] px-[20px] gap-[24px] text-white">
       <Image
+        alt="logo"
         src={"/assets/images/LogoBlue.webp"}
         width={315}
         height={90}
