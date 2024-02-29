@@ -25,8 +25,8 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <div className="container mx-auto flex justify-center items-center">
-      <div className="px-[30px] py-[30px] lg:py-[50px] rounded-[31px] w-[90vw]">
+    <div className="container mx-auto flex justify-center items-center lg:mt-[10px]">
+      <div className="px-[30px] py-[30px] lg:py-[50px] rounded-[31px] w-[90vw] ">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="relative flex flex-col justify-center items-center md:items-start gap-[15px] text-center md:text-start md:w-[55%] lg:w-[50%] xl:w-[80%]">
             <h1 className="w-[290px] md:w-[350px] lg:w-[450px] xl:w-[682px] 2xl:w-full text-white text-2xl md:text-3xl 2xl:text-5xl font-medium font-header uppercase md:leading-[43.20px] 2xl:leading-[57.60px] select-none">

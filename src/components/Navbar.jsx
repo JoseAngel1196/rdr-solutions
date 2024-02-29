@@ -3,11 +3,14 @@
 import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter, usePathname } from "next/navigation";
 
 import { FaBars, FaTimes } from "react-icons/fa";
 
 const Navbar = ({ activeSection, setActiveSection, goToSection }) => {
   const navRef = useRef(null);
+  const router = useRouter();
+  const pathname = usePathname();
 
   const handleNavClick = (sectionId) => {
     setActiveSection(sectionId);
@@ -23,8 +26,9 @@ const Navbar = ({ activeSection, setActiveSection, goToSection }) => {
   };
 
   return (
-    <header className="bg-white sticky top-0 z-[5] flex justify-between items-center lg:mb-[10px] p-5 font-sans">
+    <header className="bg-white sticky top-0 z-[5] flex justify-between items-center p-5 font-sans">
       <Image
+        onClick={() => router.push("/")}
         src={"/assets/images/Logo.webp"}
         width={315}
         height={90}
@@ -35,13 +39,17 @@ const Navbar = ({ activeSection, setActiveSection, goToSection }) => {
 
       <nav ref={navRef} className="flex justify-end gap-[20px] lg:gap-[50px]">
         <Link
-          href={"#Home"}
+          href={"/#Home"}
           onClick={(e) => {
-            e.preventDefault();
-            handleNavClick("Home");
-            hideNavbar();
-            goToSection("Home");
-            window.scrollTo(0, 0);
+            if (pathname !== "/") {
+              router.push("/");
+            } else {
+              e.preventDefault();
+              handleNavClick("Home");
+              hideNavbar();
+              goToSection("Home");
+              window.scrollTo(0, 0);
+            }
           }}
           className={
             activeSection === "Home"
@@ -53,7 +61,7 @@ const Navbar = ({ activeSection, setActiveSection, goToSection }) => {
         </Link>
 
         <Link
-          href={"#OurProducts"}
+          href={"/#OurProducts"}
           onClick={(e) => {
             e.preventDefault();
             handleNavClick("OurProducts");
@@ -70,12 +78,16 @@ const Navbar = ({ activeSection, setActiveSection, goToSection }) => {
         </Link>
 
         <Link
-          href={"#ContactUs"}
+          href={pathname === "/contact" ? "/contact" : "/#ContactUs"}
           onClick={(e) => {
-            e.preventDefault();
-            handleNavClick("ContactUs");
-            hideNavbar();
-            goToSection("ContactUs");
+            if (pathname === "/contact") {
+              window.scrollTo(0, 0);
+            } else {
+              e.preventDefault();
+              handleNavClick("ContactUs");
+              hideNavbar();
+              goToSection("ContactUs");
+            }
           }}
           className={
             activeSection === "ContactUs"
@@ -87,7 +99,7 @@ const Navbar = ({ activeSection, setActiveSection, goToSection }) => {
         </Link>
 
         <Link
-          href={"#JoinOurTeam"}
+          href={"/#JoinOurTeam"}
           onClick={(e) => {
             e.preventDefault();
             handleNavClick("JoinOurTeam");

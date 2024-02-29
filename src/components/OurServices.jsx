@@ -99,7 +99,7 @@ const OurServices = () => {
                     onClick={() => {
                       setModalItem(item);
                     }}
-                    className="bg-[#6C9DD7] text-white shadow-lg rounded-[35px] py-[13px] w-full text-[16px] font-bold tracking-[0.16px] transition-all active:scale-90"
+                    className="bg-[#6C9DD7] text-white shadow-lg rounded-[35px] py-[13px] w-full text-[16px] font-sans font-medium tracking-[0.16px] transition-all active:scale-90"
                   >
                     See more
                   </button>
@@ -138,7 +138,7 @@ const OurServices = () => {
                     onClick={() => {
                       setModalItem(item);
                     }}
-                    className="bg-[#6C9DD7] text-white shadow-lg rounded-[35px] py-[13px] w-full text-[16px] font-bold tracking-[0.16px] transition-all active:scale-90"
+                    className="bg-[#6C9DD7] text-white shadow-lg rounded-[35px] py-[13px] w-full text-[16px] font-sans font-medium tracking-[0.16px] transition-all active:scale-90"
                   >
                     See more
                   </button>

@@ -9,7 +9,7 @@ import {
 
 const Footer = () => {
   return (
-    <div className="bg-[#3E5D9D] flex flex-col md:flex-row justify-center md:justify-between items-center py-[24px] px-[20px] gap-[24px] text-white">
+    <footer className="bg-[#3E5D9D] flex flex-col md:flex-row justify-center md:justify-between items-center py-[24px] px-[20px] gap-[24px] text-white mt-auto lg:max-h-[100px]">
       <Image
         alt="logo"
         src={"/assets/images/LogoBlue.webp"}
@@ -20,7 +20,7 @@ const Footer = () => {
       />
 
       <span>
-        Copyright © 2023 -{" "}
+        Copyright © {new Date().getFullYear()} -{" "}
         <span className="font-bold underline">RDR Solutions, LLC</span>
       </span>
 
@@ -41,7 +41,7 @@ const Footer = () => {
           <AiFillLinkedin width={16} height={16} color="#3E5D9D" />
         </a>
       </span>
-    </div>
+    </footer>
   );
 };
 

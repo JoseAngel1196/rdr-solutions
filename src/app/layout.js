@@ -1,6 +1,10 @@
 import { Poppins, Fraunces } from "next/font/google";
 
+import { Toaster } from "sonner";
+
 import "./globals.css";
+import NavbarWrapper from "@/components/NavbarWrapper";
+import Footer from "@/components/Footer";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -21,9 +25,14 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="bg-[#3E5D9D] scroll-smooth">
-      <body className={`${poppins.variable} ${fraunces.variable}`}>
+    <html lang="en">
+      <body
+        className={`${poppins.variable} ${fraunces.variable} bg-[#3E5D9D] scroll-smooth flex flex-col min-h-screen`}
+      >
+        <NavbarWrapper />
         {children}
+        <Footer />
+        <Toaster position="top-center" />
       </body>
     </html>
   );

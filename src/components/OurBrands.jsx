@@ -15,7 +15,7 @@ const OurBrands = () => {
               width={500}
               height={500}
               alt="Bambú logo"
-              className="grayscale h-[80px] w-full md:max-w-[100px] object-contain md:scale-125"
+              className="h-[80px] w-full md:max-w-[100px] object-contain md:scale-125"
             />
           </div>
 
@@ -25,7 +25,7 @@ const OurBrands = () => {
               width={500}
               height={500}
               alt="Colgate logo"
-              className="grayscale h-[80px] w-full md:max-w-[100px] object-contain md:scale-125"
+              className="h-[80px] w-full md:max-w-[100px] object-contain md:scale-125"
             />
           </div>
 
@@ -35,7 +35,7 @@ const OurBrands = () => {
               width={500}
               height={500}
               alt="Fabuloso logo"
-              className="grayscale h-[80px] w-full md:max-w-[100px] object-contain md:scale-110"
+              className="h-[80px] w-full md:max-w-[100px] object-contain md:scale-110"
             />
           </div>
 
@@ -45,7 +45,7 @@ const OurBrands = () => {
               width={500}
               height={500}
               alt="Ajax logo"
-              className="grayscale h-[80px] w-full md:max-w-[100px] object-contain"
+              className="h-[80px] w-full md:max-w-[100px] object-contain"
             />
           </div>
 
@@ -55,7 +55,7 @@ const OurBrands = () => {
               width={500}
               height={500}
               alt="Guarina logo"
-              className="grayscale h-[80px] w-full md:max-w-[100px] object-contain md:scale-125"
+              className="h-[80px] w-full md:max-w-[100px] object-contain md:scale-125"
             />
           </div>
         </div>
@@ -67,7 +67,7 @@ const OurBrands = () => {
               width={500}
               height={500}
               alt="Lavador logo"
-              className="grayscale h-[80px] w-full md:max-w-[100px] object-contain scale-[2.0] md:scale-[1.8]"
+              className="h-[80px] w-full md:max-w-[100px] object-contain scale-[2.0] md:scale-[1.8]"
             />
           </div>
 
@@ -77,7 +77,7 @@ const OurBrands = () => {
               width={500}
               height={500}
               alt="Palmolive logo"
-              className="grayscale h-[80px] w-full md:max-w-[100px] object-contain"
+              className="h-[80px] w-full md:max-w-[100px] object-contain"
             />
           </div>
 
@@ -87,7 +87,7 @@ const OurBrands = () => {
               width={500}
               height={500}
               alt="Tips Calbaq logo"
-              className="grayscale h-[80px] w-full md:max-w-[100px] object-contain scale-125 md:scale-150"
+              className="h-[80px] w-full md:max-w-[100px] object-contain scale-125 md:scale-150"
             />
           </div>
 
@@ -97,7 +97,7 @@ const OurBrands = () => {
               width={500}
               height={500}
               alt="Fiori Bruna logo"
-              className="grayscale h-[80px] w-full md:max-w-[100px] object-contain md:scale-125 xl:scale-150"
+              className="h-[80px] w-full md:max-w-[100px] object-contain md:scale-125 xl:scale-150"
             />
           </div>
 
@@ -107,7 +107,7 @@ const OurBrands = () => {
               width={500}
               height={500}
               alt="Suavitel logo"
-              className="grayscale h-[80px] w-full md:max-w-[100px] object-contain scale-150"
+              className="h-[80px] w-full md:max-w-[100px] object-contain scale-150"
             />
           </div>
         </div>
