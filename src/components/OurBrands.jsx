@@ -93,7 +93,7 @@ const OurBrands = () => {
 
           <div className="items-center justify-center p-[0_20px] md:p-[10px_20px] lg:p-[10px_30px] 2xl:p-[10px_50px]">
             <Image
-              src={"/assets/images/Brands/Fiori_Bruna_logo.webp"}
+              src={"/assets/images/Brands/Fiori_Bruna_Logo.webp"}
               width={500}
               height={500}
               alt="Fiori Bruna logo"
