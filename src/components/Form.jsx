@@ -58,7 +58,13 @@ const Form = () => {
                   : "Want to be part of our team?"}
               </h1>
 
-              <h2 className="text-white font-header text-2xl xl:text-4xl 2xl:text-5xl font-bold tracking-tight">
+              <h2
+                className={`text-white font-header text-2xl ${
+                  pathname === "/contact"
+                    ? "xl:text-4xl 2xl:text-5xl"
+                    : "xl:text-3xl 2xl:text-4xl"
+                } font-bold tracking-tight`}
+              >
                 {pathname === "/contact"
                   ? "Have some big idea or brand to develop and need help? Then reach out we´d love to hear about your project and provide help"
                   : "We are always looking for talented people to join us. If you are a Salesman and/or distributor this is your opportunity to grow. Send us an email in contact us section. Join us today!"}
