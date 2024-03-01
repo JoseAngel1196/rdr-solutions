@@ -119,7 +119,7 @@ const Navbar = () => {
         </Link>
 
         <Link
-          href={pathname === "/contact" ? "/contact" : "/#ContactUs"}
+          href={pathname === "/" ? "/#ContactUs" : "/contact"}
           onClick={() => {
             handleNavClick("ContactUs");
             hideNavbar();
@@ -139,7 +139,6 @@ const Navbar = () => {
           onClick={() => {
             handleNavClick("join");
             hideNavbar();
-            goToSection("join");
           }}
           className={
             activeSection === "join"
