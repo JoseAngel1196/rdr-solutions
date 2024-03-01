@@ -8,6 +8,12 @@
   box-sizing: border-box;
 }
 
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
 header .nav-btn {
   padding: 5px;
   cursor: pointer;
@@ -23,7 +29,8 @@ header .nav-btn {
 
 .servicesEllipsis {
   display: -webkit-box;
-  -webkit-line-clamp: 4; /* Número máximo de líneas que se mostrarán */
+  -webkit-line-clamp: 4;
+  /* Número máximo de líneas que se mostrarán */
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -56,6 +63,7 @@ header .nav-btn {
   @media only screen and (min-width: 1280px) {
     width: 50%;
   }
+
   @media only screen and (min-width: 1536px) {
     width: 40%;
   }

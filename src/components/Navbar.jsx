@@ -1,16 +1,24 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
 
 import { FaBars, FaTimes } from "react-icons/fa";
 
-const Navbar = ({ activeSection, setActiveSection, goToSection }) => {
+const Navbar = () => {
   const navRef = useRef(null);
   const router = useRouter();
   const pathname = usePathname();
+
+  const [activeSection, setActiveSection] = useState("Home");
+
+  const goToSection = (section) => {
+    const sectionId = document.getElementById(section);
+
+    sectionId?.scrollIntoView({ behavior: "smooth" });
+  };
 
   const handleNavClick = (sectionId) => {
     setActiveSection(sectionId);
@@ -24,6 +32,29 @@ const Navbar = ({ activeSection, setActiveSection, goToSection }) => {
   const hideNavbar = () => {
     navRef.current.classList.remove("responsive_nav");
   };
+
+    useEffect(() => {
+      const handleIntersection = (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const sectionId = entry.target.getAttribute("id");
+            if (sectionId !== activeSection?.id) {
+              setActiveSection(entry.target);
+            }
+          }
+        });
+      };
+
+      const observer = new IntersectionObserver(handleIntersection, {
+        rootMargin: "-50% 0px -50% 0px",
+        threshold: 0,
+      });
+
+      const sections = document.querySelectorAll("section");
+      sections.forEach((section) => observer.observe(section));
+
+      return () => observer.disconnect();
+    }, [activeSection]);
 
   return (
     <header className="bg-white sticky top-0 z-[5] flex justify-between items-center p-5 font-sans">
@@ -40,16 +71,11 @@ const Navbar = ({ activeSection, setActiveSection, goToSection }) => {
       <nav ref={navRef} className="flex justify-end gap-[20px] lg:gap-[50px]">
         <Link
           href={"/#Home"}
-          onClick={(e) => {
-            if (pathname !== "/") {
-              router.push("/");
-            } else {
-              e.preventDefault();
-              handleNavClick("Home");
-              hideNavbar();
-              goToSection("Home");
-              window.scrollTo(0, 0);
-            }
+          onClick={() => {
+            handleNavClick("Home");
+            hideNavbar();
+            goToSection("Home");
+            window.scrollTo(0, 0);
           }}
           className={
             activeSection === "Home"
@@ -61,33 +87,43 @@ const Navbar = ({ activeSection, setActiveSection, goToSection }) => {
         </Link>
 
         <Link
-          href={"/#OurProducts"}
-          onClick={(e) => {
-            e.preventDefault();
-            handleNavClick("OurProducts");
+          href={"/#brands"}
+          onClick={() => {
+            handleNavClick("brands");
             hideNavbar();
-            goToSection("OurProducts");
+            goToSection("brands");
           }}
           className={
-            activeSection === "OurProducts"
+            activeSection === "brands"
               ? "text-center text-[#6C9DD7] text-[1.5rem] md:text-base font-semibold leading-normal cursor-pointer bg-white md:bg-none rounded-2xl md:rounded-none px-5 md:px-0 py-1 md:py-0"
               : "text-center text-white md:text-[#3E5D9D] text-[1.5rem] md:text-base font-semibold leading-normal hover:text-[#6C9DD7] transition-all duration-300 cursor-pointer"
           }
         >
-          Our Products
+          Our Brands
+        </Link>
+
+        <Link
+          href={"/#services"}
+          onClick={() => {
+            handleNavClick("services");
+            hideNavbar();
+            goToSection("services");
+          }}
+          className={
+            activeSection === "services"
+              ? "text-center text-[#6C9DD7] text-[1.5rem] md:text-base font-semibold leading-normal cursor-pointer bg-white md:bg-none rounded-2xl md:rounded-none px-5 md:px-0 py-1 md:py-0"
+              : "text-center text-white md:text-[#3E5D9D] text-[1.5rem] md:text-base font-semibold leading-normal hover:text-[#6C9DD7] transition-all duration-300 cursor-pointer"
+          }
+        >
+          Our Services
         </Link>
 
         <Link
           href={pathname === "/contact" ? "/contact" : "/#ContactUs"}
-          onClick={(e) => {
-            if (pathname === "/contact") {
-              window.scrollTo(0, 0);
-            } else {
-              e.preventDefault();
-              handleNavClick("ContactUs");
-              hideNavbar();
-              goToSection("ContactUs");
-            }
+          onClick={() => {
+            handleNavClick("ContactUs");
+            hideNavbar();
+            goToSection("ContactUs");
           }}
           className={
             activeSection === "ContactUs"
@@ -99,15 +135,14 @@ const Navbar = ({ activeSection, setActiveSection, goToSection }) => {
         </Link>
 
         <Link
-          href={"/#JoinOurTeam"}
-          onClick={(e) => {
-            e.preventDefault();
-            handleNavClick("JoinOurTeam");
+          href={"/join"}
+          onClick={() => {
+            handleNavClick("join");
             hideNavbar();
-            goToSection("JoinOurTeam");
+            goToSection("join");
           }}
           className={
-            activeSection === "JoinOurTeam"
+            activeSection === "join"
               ? "text-center text-[#6C9DD7] text-[1.5rem] md:text-base font-semibold leading-normal cursor-pointer bg-white md:bg-none rounded-2xl md:rounded-none px-5 md:px-0 py-1 md:py-0"
               : "text-center text-white md:text-[#3E5D9D] text-[1.5rem] md:text-base font-semibold leading-normal hover:text-[#6C9DD7] transition-all duration-300 cursor-pointer"
           }

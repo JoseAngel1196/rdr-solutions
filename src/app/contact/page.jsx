@@ -40,17 +40,17 @@ export default function Index() {
   return (
     <section className="bg-white relative min-h-screen">
       <div className="container mx-auto">
-        <div className="absolute inset-0 h-[75%] 2xl:h-[65%] min-[2000px]:h-[46%] bg-[#3E5D9D]" />
+        <div className="absolute inset-0 h-[calc(100%-15%)] md:h-[calc(100%-17%)] 3xl:h-[calc(100%-34%)] bg-[#3E5D9D]" />
 
-        <div className="relative mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="relative 2xl:mt-[10%] mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-x-16 gap-y-8 lg:grid-cols-5">
             <div className="lg:col-span-2 lg:py-12">
               <div className="flex flex-col justify-start gap-5">
-                <h1 className="font-sans text-lg font-semibold text-white/75">
+                <h1 className="text-lg font-sans font-semibold text-white/75">
                   Let&apos;s get in touch
                 </h1>
 
-                <h2 className="text-white font-header text-2xl font-bold tracking-tight lg:text-4xl">
+                <h2 className="text-white font-header text-2xl xl:text-4xl 2xl:text-5xl font-bold tracking-tight">
                   Have some big idea or brand to develop and need help? Then
                   reach out we&apos;d love to hear about your project and
                   provide help
@@ -85,22 +85,22 @@ export default function Index() {
             </div>
 
             <div className="rounded-lg bg-[#F7F7F7] p-8 shadow-2xl lg:col-span-3 lg:p-12">
-              <h3 className="mb-8 text-2xl font-bold font-header text-[#0E5F8C] tracking-tight">
+              <h3 className="mb-8 text-2xl md:text-3xl xl:text-4xl 2xl:text-5xl font-bold font-header text-[#0E5F8C] tracking-tight">
                 Send us a message
               </h3>
 
               <form
-                className="font-sans text-base font-medium"
+                className="font-sans text-lg font-medium"
                 onSubmit={formik.handleSubmit}
               >
                 <div className="space-y-2">
                   <label className="block" htmlFor="name">
-                    <span className="block text-base font-medium text-gray-800 p-3">
+                    <span className="block font-medium text-gray-800 p-3">
                       Your Name
                     </span>
 
                     <input
-                      className={`w-full rounded-lg bg-[#DAF0FB] border border-gray-300 p-3 text-sm shadow-sm focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 disabled:cursor-not-allowed disabled:opacity-50 ${
+                      className={`w-full rounded-lg bg-[#DAF0FB] border border-gray-300 p-3 placeholder:text-sm shadow-sm focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 disabled:cursor-not-allowed disabled:opacity-50 ${
                         formik.errors.name &&
                         "border-pink-500 ring-pink-500 text-pink-600 bg-pink-50 focus:border-pink-500 focus:ring-pink-500"
                       }`}
@@ -128,12 +128,12 @@ export default function Index() {
                 <div className="grid grid-cols-1 md:gap-x-4 sm:grid-cols-2">
                   <div className="space-y-2">
                     <label className="block" htmlFor="email">
-                      <span className="block text-base font-medium text-gray-800 p-3">
+                      <span className="block font-medium text-gray-800 p-3">
                         Your Email address
                       </span>
 
                       <input
-                        className={`w-full rounded-lg bg-[#DAF0FB] border border-gray-300 p-3 text-sm shadow-sm focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 disabled:cursor-not-allowed disabled:opacity-50 lowercase placeholder:normal-case ${
+                        className={`w-full rounded-lg bg-[#DAF0FB] border border-gray-300 p-3 placeholder:text-sm shadow-sm focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 disabled:cursor-not-allowed disabled:opacity-50 lowercase placeholder:normal-case ${
                           formik.errors.email &&
                           "border-pink-500 ring-pink-500 text-pink-600 bg-pink-50 focus:border-pink-500 focus:ring-pink-500"
                         }`}
@@ -166,12 +166,12 @@ export default function Index() {
 
                   <div className="space-y-2">
                     <label className="block" htmlFor="phone">
-                      <span className="block text-base font-medium text-gray-800 p-3">
+                      <span className="block font-medium text-gray-800 p-3">
                         Your phone number
                       </span>
 
                       <input
-                        className={`w-full rounded-lg bg-[#DAF0FB] border border-gray-300 p-3 text-sm shadow-sm focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 disabled:cursor-not-allowed disabled:opacity-50 ${
+                        className={`w-full rounded-lg bg-[#DAF0FB] border border-gray-300 p-3 placeholder:text-sm shadow-sm focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 disabled:cursor-not-allowed disabled:opacity-50 ${
                           formik.errors.phone &&
                           "border-pink-500 ring-pink-500 text-pink-600 bg-pink-50 focus:border-pink-500 focus:ring-pink-500"
                         }`}
@@ -202,12 +202,12 @@ export default function Index() {
 
                 <div className="space-y-2">
                   <label className="block" htmlFor="message">
-                    <span className="block text-base font-medium text-gray-800 p-3">
+                    <span className="block font-medium text-gray-800 p-3">
                       Message
                     </span>
 
                     <textarea
-                      className={`w-full rounded-lg bg-[#DAF0FB] border border-gray-300 p-3 text-sm shadow-sm focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 disabled:cursor-not-allowed disabled:opacity-50 ${
+                      className={`w-full rounded-lg bg-[#DAF0FB] border border-gray-300 p-3 placeholder:text-sm shadow-sm focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 disabled:cursor-not-allowed disabled:opacity-50 ${
                         formik.errors.message &&
                         "border-pink-500 ring-pink-500 text-pink-600 bg-pink-50 focus:border-pink-500 focus:ring-pink-500"
                       }`}
@@ -234,7 +234,7 @@ export default function Index() {
                 <div className="mt-4">
                   <button
                     type="submit"
-                    className="bg-[#6C9DD7] text-white text-base shadow-lg rounded-[35px] py-[13px] px-5 w-full sm:w-auto font-sans font-medium inline-block"
+                    className="bg-[#6C9DD7] text-white shadow-lg rounded-[35px] py-[13px] px-5 w-full sm:w-auto font-sans font-medium inline-block"
                   >
                     Send my contact request
                   </button>

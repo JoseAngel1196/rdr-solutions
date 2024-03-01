@@ -56,7 +56,7 @@ const OurServicesModal = ({ item, setModalItem, modal }) => {
           setModalItem(null);
         }
       }}
-      className="modal"
+      className="modal font-sans"
     >
       <AiOutlineCloseCircle
         className="absolute top-3 right-4 text-xl text-[#3E5D9D] cursor-pointer transition-all active:scale-95"

@@ -16,6 +16,9 @@ module.exports = {
         sans: ["var(--font-poppins)"],
         header: ["var(--font-fraunces)"],
       },
+      screens: {
+        "3xl": "2000px",
+      },
     },
   },
   plugins: [],
