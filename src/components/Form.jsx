@@ -11,6 +11,7 @@ import { toast } from "sonner";
 import { useFormik } from "formik";
 
 import { ContactSchema } from "@/validations/ContactSchema";
+import { sendEmail } from "@/actions";
 const Form = () => {
   const [isWideScreen, setIsWideScreen] = useState(false);
 
@@ -22,17 +23,32 @@ const Form = () => {
       message: "",
     },
     validationSchema: ContactSchema,
-    onSubmit: (values) => {
-      toast.success(
-        "Thank you for reaching out!, We will get back to you soon",
-        {
+    onSubmit: async (values) => {
+      const sendEmailFunction = await sendEmail({
+        name: values.name,
+        email: values.email,
+        phone: values.phone,
+        message: values.message,
+      });
+
+      if (sendEmailFunction.error) {
+        toast.error(sendEmailFunction.error, {
           style: { background: "#0E5F8C", color: "#fff" },
-        }
-      );
+        });
 
-      console.log(values);
+        return;
+      }
 
-      formik.resetForm();
+      if (sendEmailFunction.success) {
+        toast.success(
+          "Thank you for reaching out!, We will get back to you soon",
+          {
+            style: { background: "#0E5F8C", color: "#fff" },
+          }
+        );
+
+        formik.resetForm();
+      }
     },
   });
 
@@ -141,6 +157,7 @@ const Form = () => {
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.name}
+                    disabled={formik.isSubmitting}
                     name="name"
                     autoComplete="given-name"
                     aria-label="Name"
@@ -173,6 +190,7 @@ const Form = () => {
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                       value={formik.values.email}
+                      disabled={formik.isSubmitting}
                       name="email"
                       required
                       autoComplete="email"
@@ -209,6 +227,7 @@ const Form = () => {
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                       value={formik.values.phone}
+                      disabled={formik.isSubmitting}
                       name="phone"
                       required
                       autoComplete="tel"
@@ -243,6 +262,7 @@ const Form = () => {
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.message}
+                    disabled={formik.isSubmitting}
                     name="message"
                     required
                     aria-label="Message"
@@ -260,7 +280,8 @@ const Form = () => {
               <div className="mt-4">
                 <button
                   type="submit"
-                  className="bg-[#6C9DD7] text-white shadow-lg rounded-[35px] py-[13px] px-5 w-full sm:w-auto font-sans font-medium inline-block"
+                  disabled={formik.isSubmitting}
+                  className="bg-[#6C9DD7] text-white shadow-lg rounded-[35px] py-[13px] px-5 w-full sm:w-auto font-sans font-medium inline-block disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   Send my contact request
                 </button>
