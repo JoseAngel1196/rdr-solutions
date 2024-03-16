@@ -19,9 +19,7 @@ const items = [
   {
     id: 2,
     title: "Commercial Execution",
-    text: `5 Ps and Innovation, new products development, Price study & price strategy, identify opportunities for distribution and network, activation by retail environment.
-    5 P’s best practices
-    Network & Distribution`,
+    text: `5 Ps and Innovation, new products development, Price study & price strategy, identify opportunities for distribution and network, activation by retail environment.`,
     logo: "lightbulbIcon",
   },
   {

@@ -2,9 +2,9 @@
 
 import { usePathname } from "next/navigation";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
-import { FaEnvelope, FaRegBuilding } from "react-icons/fa";
+import { FaEnvelope } from "react-icons/fa";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { IoLocationSharp } from "react-icons/io5";
 import { toast } from "sonner";
@@ -12,6 +12,8 @@ import { useFormik } from "formik";
 
 import { ContactSchema } from "@/validations/ContactSchema";
 const Form = () => {
+  const [isWideScreen, setIsWideScreen] = useState(false);
+
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -40,9 +42,23 @@ const Form = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  useEffect(() => {
+    function handleResize() {
+      setIsWideScreen(window.innerWidth >= 2000);
+    }
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <div className="container mx-auto">
-      <div className="absolute inset-0 h-[calc(100%-15%)] md:h-[calc(100%-17%)] 3xl:h-[calc(100%-34%)] bg-[#3E5D9D]" />
+      <div className="absolute inset-0 h-[calc(100%-15%)] md:h-[calc(100%-17%)] 2xl:h-full bg-[#3E5D9D]" />
 
       <div
         className={`relative ${
@@ -65,9 +81,15 @@ const Form = () => {
                     : "xl:text-3xl 2xl:text-4xl"
                 } font-bold tracking-tight`}
               >
-                {pathname === "/contact"
-                  ? "Have some big idea or brand to develop and need help? Then reach out we´d love to hear about your project and provide help"
-                  : "We are always looking for talented people to join us. If you are a Salesman and/or distributor this is your opportunity to grow. Send us an email in contact us section. Join us today!"}
+                {pathname === "/contact" ? (
+                  <p>
+                    Have some big idea or brand to develop and need help? Then
+                    reach out {isWideScreen && <br />} we&apos;d love to hear
+                    about your project and provide help
+                  </p>
+                ) : (
+                  "We are always looking for talented people to join us. If you are a Salesman and/or distributor this is your opportunity to grow. Send us an email in contact us section. Join us today!"
+                )}
               </h2>
 
               <h4 className="font-sans text-lg font-semibold text-white/75">
@@ -77,22 +99,17 @@ const Form = () => {
               <div className="flex flex-col gap-2 font-sans text-lg font-medium text-white/75">
                 <span className="flex items-center space-x-4">
                   <FaEnvelope />
-                  <p>oC9wA@example.com</p>
+                  <p>info@rdrsolution.com</p>
                 </span>
 
                 <span className="flex items-center space-x-4">
                   <BsFillTelephoneFill />
-                  <p>12346789</p>
+                  <p>657-203-7760</p>
                 </span>
 
                 <span className="flex items-center space-x-4">
                   <IoLocationSharp />
-                  <p>Nijstadstraat 2, 7478 DJ Diepenheim, Nederland</p>
-                </span>
-
-                <span className="flex items-center space-x-4">
-                  <FaRegBuilding />
-                  <p>COC: 78449227 BTW:NL861402728B01</p>
+                  <p>175 SW, 7TH St Suite 1815, Miami FL 33130, USA</p>
                 </span>
               </div>
             </div>
@@ -128,7 +145,6 @@ const Form = () => {
                     autoComplete="given-name"
                     aria-label="Name"
                     required
-                    autoFocus
                     aria-required
                     aria-invalid={formik.errors.name && formik.touched.name}
                   />

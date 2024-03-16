@@ -33,28 +33,28 @@ const Navbar = () => {
     navRef.current.classList.remove("responsive_nav");
   };
 
-    useEffect(() => {
-      const handleIntersection = (entries, observer) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const sectionId = entry.target.getAttribute("id");
-            if (sectionId !== activeSection?.id) {
-              setActiveSection(entry.target);
-            }
+  useEffect(() => {
+    const handleIntersection = (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const sectionId = entry.target.getAttribute("id");
+          if (sectionId !== activeSection?.id) {
+            setActiveSection(entry.target);
           }
-        });
-      };
-
-      const observer = new IntersectionObserver(handleIntersection, {
-        rootMargin: "-50% 0px -50% 0px",
-        threshold: 0,
+        }
       });
+    };
 
-      const sections = document.querySelectorAll("section");
-      sections.forEach((section) => observer.observe(section));
+    const observer = new IntersectionObserver(handleIntersection, {
+      rootMargin: "-50% 0px -50% 0px",
+      threshold: 0,
+    });
 
-      return () => observer.disconnect();
-    }, [activeSection]);
+    const sections = document.querySelectorAll("section");
+    sections.forEach((section) => observer.observe(section));
+
+    return () => observer.disconnect();
+  }, [activeSection]);
 
   return (
     <header className="bg-white sticky top-0 z-[5] flex justify-between items-center p-5 font-sans">
@@ -132,21 +132,6 @@ const Navbar = () => {
           }
         >
           Contact Us
-        </Link>
-
-        <Link
-          href={"/join"}
-          onClick={() => {
-            handleNavClick("join");
-            hideNavbar();
-          }}
-          className={
-            activeSection === "join"
-              ? "text-center text-[#6C9DD7] text-[1.5rem] md:text-base font-semibold leading-normal cursor-pointer bg-white md:bg-none rounded-2xl md:rounded-none px-5 md:px-0 py-1 md:py-0"
-              : "text-center text-white md:text-[#3E5D9D] text-[1.5rem] md:text-base font-semibold leading-normal hover:text-[#6C9DD7] transition-all duration-300 cursor-pointer"
-          }
-        >
-          Join Our Team
         </Link>
 
         <button className="nav-btn nav-close-btn" onClick={hideNavbar}>
