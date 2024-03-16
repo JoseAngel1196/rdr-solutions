@@ -12,7 +12,7 @@ const ContactUs = () => {
 
       <p className="text-center max-w-lg text-[#3E5D9D] text-base font-normal font-sans leading-[21px] select-none">
         Have some big idea or brand to develop and need help? Then reach out
-        we&apos;d love to hear about your project and provide help
+        we&apos;d love to hear about your project and provide help...
       </p>
 
       <Link

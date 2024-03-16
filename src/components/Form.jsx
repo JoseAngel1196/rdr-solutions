@@ -85,7 +85,7 @@ const Form = () => {
                   <p>
                     Have some big idea or brand to develop and need help? Then
                     reach out {isWideScreen && <br />} we&apos;d love to hear
-                    about your project and provide help
+                    about your project and provide help...
                   </p>
                 ) : (
                   "We are always looking for talented people to join us. If you are a Salesman and/or distributor this is your opportunity to grow. Send us an email in contact us section. Join us today!"
