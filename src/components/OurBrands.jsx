@@ -61,6 +61,19 @@ const OurBrands = () => {
               className="h-[80px] w-full md:max-w-[100px] object-contain scale-90 md:scale-125"
             />
           </div>
+
+          <div className="items-center justify-center p-[0_20px] md:p-[10px_20px] lg:p-[10px_30px] 2xl:p-[10px_50px]">
+            <Image
+              src={"/assets/images/Brands/Ardil_logo.webp"}
+              width={500}
+              height={500}
+              alt="Suavitel logo"
+              className="h-[80px] w-full md:max-w-[100px] object-contain md:scale-125"
+            />
+          </div>
+        </div>
+
+        <div className="flex flex-col md:flex-row items-center justify-center">
           <div className="items-center justify-center p-[0_20px] md:p-[10px_20px] lg:p-[10px_30px] 2xl:p-[10px_50px]">
             <Image
               src={"/assets/images/Brands/Fiori_Bruna_Logo.webp"}
@@ -70,9 +83,7 @@ const OurBrands = () => {
               className="h-[80px] w-full md:max-w-[100px] object-contain md:scale-125 xl:scale-150"
             />
           </div>
-        </div>
-
-        <div className="flex flex-col md:flex-row items-center justify-center">
+          
           <div className="items-center justify-center p-[0_20px] md:p-[10px_20px] lg:p-[10px_30px] 2xl:p-[10px_50px]">
             <Image
               src={"/assets/images/Brands/Bambu_logo.webp"}
@@ -110,16 +121,6 @@ const OurBrands = () => {
               height={500}
               alt="Suavitel logo"
               className="h-[80px] w-full md:max-w-[100px] object-contain scale-150"
-            />
-          </div>
-
-          <div className="items-center justify-center p-[0_20px] md:p-[10px_20px] lg:p-[10px_30px] 2xl:p-[10px_50px]">
-            <Image
-              src={"/assets/images/Brands/Ardil_logo.webp"}
-              width={500}
-              height={500}
-              alt="Suavitel logo"
-              className="h-[80px] w-full md:max-w-[100px] object-contain md:scale-125"
             />
           </div>
 
