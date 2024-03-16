@@ -19,7 +19,7 @@ const Footer = () => {
 
   useEffect(() => {
     function handleResize() {
-      setIsWideScreen(window.innerWidth >= 2000);
+      setIsWideScreen(window.innerWidth >= 1536);
     }
 
     handleResize();

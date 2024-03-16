@@ -54,8 +54,8 @@ const OurServices = () => {
   const modalRef = useRef(null);
 
   return (
-    <section id="services" className="flex justify-center items-center pb-[72px] container mx-auto">
-      <div className="flex flex-col items-center bg-[#3E5D9D] px-[1.25rem] md:px-[59px] py-[4.5rem] rounded-[2.5rem] w-[90vw] gap-[2.5rem]">
+    <section id="services" className="flex justify-center items-center container mx-auto">
+      <div className="flex flex-col items-center bg-[#3E5D9D] px-[1.25rem] md:px-[59px] py-[40px] rounded-[2.5rem] w-[90vw] gap-[2.5rem]">
         <div className="flex flex-col items-center gap-[1.8125rem] self-stretch">
           <h2 className="text-center text-white text-[2.5rem] font-header font-medium tracking-tight">
             Our Services

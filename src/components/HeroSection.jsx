@@ -29,7 +29,7 @@ const HeroSection = () => {
 
   return (
     <div className="container mx-auto flex justify-center items-center xl:my-[10px]">
-      <div className="px-[30px] py-[30px] lg:py-[50px] rounded-[31px] w-[90vw]">
+      <div className="px-[30px] py-[40px] lg:py-[50px] rounded-[31px] w-[90vw]">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="relative flex flex-col justify-center items-center md:items-start gap-[15px] text-center md:text-start md:w-[55%] lg:w-[50%] xl:w-[80%]">
             <h1 className="w-[290px] md:w-[350px] lg:w-full max-w-2xl 2xl:max-w-5xl text-white text-2xl md:text-3xl xl:text-4xl 2xl:text-5xl font-medium font-header tracking-tight lg:tracking-tighter 2xl:tracking-tight select-none">

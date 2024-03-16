@@ -4,7 +4,7 @@ const OurBrands = () => {
   return (
     <section
       id="brands"
-      className="bg-white py-[40px] flex flex-col justify-center font-header"
+      className="bg-white py-[40px] flex flex-col justify-center font-header gap-[1.8125rem]"
     >
       <h2 className="text-center text-[#3E5D9D] text-[2.5rem] font-header font-medium tracking-tight">
         Our Brands
@@ -83,7 +83,7 @@ const OurBrands = () => {
               className="h-[80px] w-full md:max-w-[100px] object-contain md:scale-125 xl:scale-150"
             />
           </div>
-          
+
           <div className="items-center justify-center p-[0_20px] md:p-[10px_20px] lg:p-[10px_30px] 2xl:p-[10px_50px]">
             <Image
               src={"/assets/images/Brands/Bambu_logo.webp"}
