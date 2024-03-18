@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import { FaEnvelope } from "react-icons/fa";
 import { BsFillTelephoneFill } from "react-icons/bs";
@@ -12,9 +12,8 @@ import { useFormik } from "formik";
 
 import { ContactSchema } from "@/validations/ContactSchema";
 import { sendEmail } from "@/actions";
+import Link from "next/link";
 const Form = () => {
-  const [isWideScreen, setIsWideScreen] = useState(false);
-
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -58,20 +57,6 @@ const Form = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  useEffect(() => {
-    function handleResize() {
-      setIsWideScreen(window.innerWidth >= 2000);
-    }
-
-    handleResize();
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
   return (
     <div className="container mx-auto">
       <div className="absolute inset-0 h-[calc(100%-15%)] md:h-[calc(100%-17%)] 2xl:h-full bg-[#3E5D9D]" />
@@ -99,7 +84,9 @@ const Form = () => {
               >
                 {pathname === "/contact" ? (
                   <p>
-                    If you have an idea or project in mind and you need help?…Reach out, we would love to hear about it and provide a solution!
+                    If you have an idea or project in mind and you need
+                    help?…Reach out, we would love to hear about it and provide
+                    a solution!
                   </p>
                 ) : (
                   "We are always looking for talented people to join us. If you are a Salesman and/or distributor this is your opportunity to grow. Send us an email in contact us section. Join us today!"
@@ -113,17 +100,19 @@ const Form = () => {
               <div className="flex flex-col gap-2 font-sans text-lg font-medium text-white/75">
                 <span className="flex items-center space-x-4">
                   <FaEnvelope />
-                  <p>info@rdrsolution.com</p>
+                  <Link href="mailto:info@rdrsolution.com">info@rdrsolution.com</Link>
                 </span>
 
                 <span className="flex items-center space-x-4">
                   <BsFillTelephoneFill />
-                  <p>(305)542-9612</p>
+                  <Link href="tel:3055429612">(305)542-9612</Link>
                 </span>
 
                 <span className="flex items-center space-x-4">
                   <IoLocationSharp />
-                  <p>175 SW, 7TH St Suite 1815, Miami FL 33130, USA</p>
+                  <Link href="https://maps.app.goo.gl/hU1Npt2drATq1ogC7">
+                    175 SW, 7TH St Suite 1815, Miami FL 33130, USA
+                  </Link>
                 </span>
               </div>
             </div>

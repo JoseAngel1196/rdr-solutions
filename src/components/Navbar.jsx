@@ -65,7 +65,7 @@ const Navbar = () => {
         height={90}
         alt="logo"
         priority
-        className="w-[140px] h-[40px] cursor-pointer md:ml-5 lg:ml-12"
+        className="w-[140px] h-[40px] cursor-pointer md:ml-5 lg:ml-12 select-none"
       />
 
       <nav ref={navRef} className="flex justify-end gap-[20px] lg:gap-[50px]">

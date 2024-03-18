@@ -25,9 +25,9 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className="overflow-x-hidden">
       <body
-        className={`${poppins.variable} ${fraunces.variable} bg-[#3E5D9D] scroll-smooth flex flex-col min-h-screen overflow-x-hidden`}
+        className={`${poppins.variable} ${fraunces.variable} bg-[#3E5D9D] scroll-smooth flex flex-col min-h-screen`}
       >
         <Navbar />
         {children}
