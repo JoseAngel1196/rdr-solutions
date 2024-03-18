@@ -99,9 +99,7 @@ const Form = () => {
               >
                 {pathname === "/contact" ? (
                   <p>
-                    Have some big idea or brand to develop and need help? Then
-                    reach out {isWideScreen && <br />} we&apos;d love to hear
-                    about your project and provide help...
+                    If you have an idea or project in mind and you need help?…Reach out, we would love to hear about it and provide a solution!
                   </p>
                 ) : (
                   "We are always looking for talented people to join us. If you are a Salesman and/or distributor this is your opportunity to grow. Send us an email in contact us section. Join us today!"
@@ -120,7 +118,7 @@ const Form = () => {
 
                 <span className="flex items-center space-x-4">
                   <BsFillTelephoneFill />
-                  <p>657-203-7760</p>
+                  <p>(305)542-9612</p>
                 </span>
 
                 <span className="flex items-center space-x-4">
