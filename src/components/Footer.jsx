@@ -34,8 +34,10 @@ const Footer = () => {
   return (
     <footer
       className={`${
-        pathname === "/contact" ? "bg-[#3E5D9D] 2xl:bg-white" : "bg-[#3E5D9D]"
-      } flex flex-col md:flex-row justify-center md:justify-between items-center py-[24px] px-[20px] gap-[24px] text-white mt-auto lg:max-h-[100px] shadow-inner`}
+        pathname === "/contact"
+          ? "bg-[#3E5D9D] text-white 2xl:bg-white"
+          : "bg-white text-[#3E5D9D]"
+      } flex flex-col md:flex-row justify-center md:justify-between items-center py-[24px] px-[20px] gap-[24px] mt-auto lg:max-h-[100px] shadow-inner`}
     >
       <Image
         alt="logo"
@@ -44,7 +46,7 @@ const Footer = () => {
             ? isWideScreen
               ? "/assets/images/Logo.webp"
               : "/assets/images/LogoBlue.webp"
-            : "/assets/images/LogoBlue.webp"
+            : "/assets/images/Logo.webp"
         }`}
         width={315}
         height={90}
@@ -52,7 +54,7 @@ const Footer = () => {
         className="w-[167px] h-[45px]"
       />
 
-      <span className={`${pathname === "/contact" && "2xl:text-[#3E5D9D]"}`}>
+      <span className={"2xl:text-[#3E5D9D]"}>
         Copyright © {new Date().getFullYear()} -{" "}
         <span className="font-bold underline">RDR Solutions, LLC</span>
       </span>
@@ -61,56 +63,96 @@ const Footer = () => {
         <Link
           href="https://www.instagram.com/rdrsolutions/"
           className={`${
-            pathname === "/contact" ? "bg-[#3E5D9D]" : "bg-white"
+            pathname === "/contact"
+              ? isWideScreen
+                ? "bg-[#3E5D9D]"
+                : "bg-white"
+              : "bg-[#3E5D9D]"
           } p-[7px] rounded-full`}
           target="_blank"
         >
           <AiFillInstagram
             width={16}
             height={16}
-            color={pathname === "/contact" ? "#fff" : "#3E5D9D"}
+            color={`${
+              pathname === "/contact"
+                ? isWideScreen
+                  ? "#fff"
+                  : "#3E5D9D"
+                : "#fff"
+            }`}
           />
         </Link>
 
         <Link
           href="https://www.facebook.com/rdrsolutions/"
           className={`${
-            pathname === "/contact" ? "bg-[#3E5D9D]" : "bg-white"
+            pathname === "/contact"
+              ? isWideScreen
+                ? "bg-[#3E5D9D]"
+                : "bg-white"
+              : "bg-[#3E5D9D]"
           } p-[7px] rounded-full`}
           target="_blank"
         >
           <AiFillFacebook
             width={16}
             height={16}
-            color={pathname === "/contact" ? "#fff" : "#3E5D9D"}
+            color={`${
+              pathname === "/contact"
+                ? isWideScreen
+                  ? "#fff"
+                  : "#3E5D9D"
+                : "#fff"
+            }`}
           />
         </Link>
 
         <Link
           href="https://twitter.com/llcrdr630?s=11&t=FRwx8M6iJRKTDiuo61CEpw"
           className={`${
-            pathname === "/contact" ? "bg-[#3E5D9D]" : "bg-white"
+            pathname === "/contact"
+              ? isWideScreen
+                ? "bg-[#3E5D9D]"
+                : "bg-white"
+              : "bg-[#3E5D9D]"
           } p-[7px] rounded-full`}
           target="_blank"
         >
           <RiTwitterXFill
             width={16}
             height={16}
-            color={pathname === "/contact" ? "#fff" : "#3E5D9D"}
+            color={`${
+              pathname === "/contact"
+                ? isWideScreen
+                  ? "#fff"
+                  : "#3E5D9D"
+                : "#fff"
+            }`}
           />
         </Link>
 
         <Link
           href="https://www.linkedin.com/in/rdr-solutions-llc-4b8333191/"
           className={`${
-            pathname === "/contact" ? "bg-[#3E5D9D]" : "bg-white"
+            pathname === "/contact"
+              ? isWideScreen
+                ? "bg-[#3E5D9D]"
+                : "bg-white"
+              : "bg-[#3E5D9D]"
           } p-[7px] rounded-full`}
           target="_blank"
         >
           <AiFillLinkedin
             width={16}
             height={16}
-            color={pathname === "/contact" ? "#fff" : "#3E5D9D"}
+            color={`${
+              pathname === "/contact"
+                ? isWideScreen
+                  ? "#fff"
+                  : "#3E5D9D"
+                : "#fff"
+            }`}
           />
         </Link>
       </span>

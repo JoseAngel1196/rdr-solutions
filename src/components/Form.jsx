@@ -110,7 +110,7 @@ const Form = () => {
 
                 <span className="flex items-center space-x-4">
                   <IoLocationSharp />
-                  <Link href="https://maps.app.goo.gl/hU1Npt2drATq1ogC7">
+                  <Link href="https://maps.app.goo.gl/hU1Npt2drATq1ogC7" target="_blank">
                     175 SW, 7TH St Suite 1815, Miami FL 33130, USA
                   </Link>
                 </span>
