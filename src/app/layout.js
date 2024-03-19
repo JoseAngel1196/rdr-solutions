@@ -20,7 +20,7 @@ const fraunces = Fraunces({
 export const metadata = {
   title: "RDR Solutions",
   description:
-    "Tailored consumer product solutions for supermarkets and independent stores",
+    "Boosting growth with fast and affordable solutions designed to fit your business needs.",
 };
 
 export default function RootLayout({ children }) {
