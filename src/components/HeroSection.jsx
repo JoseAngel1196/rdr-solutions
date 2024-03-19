@@ -15,7 +15,7 @@ const HeroSection = () => {
         if (window.scrollY > 30) {
           foodImage.style.zIndex = 2;
         } else {
-          foodImage.style.zIndex = 5;
+          foodImage.style.zIndex = 4;
         }
       }
     };
@@ -57,7 +57,7 @@ const HeroSection = () => {
                 height={1080}
                 alt="food logo"
                 priority
-                className="z-[2] lg:z-[5] h-[25rem] 2xl:h-[500px] md:max-w-[300px] lg:max-w-[350px] 2xl:max-w-[390px]"
+                className="z-[2] lg:z-[4] h-[25rem] 2xl:h-[500px] md:max-w-[300px] lg:max-w-[350px] 2xl:max-w-[390px]"
               />
             </div>
           </div>

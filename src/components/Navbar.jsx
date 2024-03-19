@@ -57,7 +57,7 @@ const Navbar = () => {
   }, [activeSection]);
 
   return (
-    <header className="bg-white sticky top-0 z-[5] flex justify-between items-center p-5 font-sans">
+    <header className="bg-white sticky top-0 z-[3] flex justify-between items-center p-5 font-sans">
       <Image
         onClick={() => router.push("/")}
         src={"/assets/images/Logo.webp"}

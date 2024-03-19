@@ -13,11 +13,13 @@ export default function Index() {
   }, []);
 
   return (
-    <div className="overflow-x-hidden">
+    <>
       <Home />
-      <OurBrands />
-      <OurServices />
-      <ContactUs />
-    </div>
+      <div className="overflow-x-hidden">
+        <OurBrands />
+        <OurServices />
+        <ContactUs />
+      </div>
+    </>
   );
 }
