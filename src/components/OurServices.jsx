@@ -28,7 +28,7 @@ const items = [
     text: `Logistics; warehouse, transportation and freight forward.
     Contract Manufacturing
     Distribution: DSD / Networking`,
-    logo: "planeLadderIcon",
+    logo: "truckIcon",
   },
   {
     id: 4,
@@ -45,7 +45,7 @@ const items = [
     Laundry and Home Care
     Food grocery’s
     Fresh and Produces`,
-    logo: "cartIcon",
+    logo: "peopleIcon",
   },
 ];
 

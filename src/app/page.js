@@ -6,6 +6,7 @@ import Home from "@/components/Home";
 import OurBrands from "@/components/OurBrands";
 import OurServices from "@/components/OurServices";
 import ContactUs from "@/components/ContactUs";
+import Diagram from "@/components/Diagram";
 
 export default function Index() {
   useEffect(() => {
@@ -18,6 +19,7 @@ export default function Index() {
       <div className="overflow-x-hidden">
         <OurBrands />
         <OurServices />
+        <Diagram />
         <ContactUs />
       </div>
     </>
