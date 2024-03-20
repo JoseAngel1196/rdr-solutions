@@ -3,21 +3,21 @@ import { Resend } from "resend";
 import { EmailTemplateHtml } from "./components/EmailTemplate";
 
 export const sendEmail = async ({ name, email, phone, message }) => {
-  if (!process.env.RESEND_API_KEY) {
+  if (!process.env.NEXT_PUBLIC_RESEND_API_KEY) {
     return {
       error: "Missing RESEND_API_KEY",
       success: false,
     };
   }
 
-  if (!process.env.FROM_EMAIL) {
+  if (!process.env.NEXT_PUBLIC_FROM_EMAIL) {
     return {
       error: "Missing FROM_EMAIL",
       success: false,
     };
   }
 
-  if (!process.env.TO_EMAIL) {
+  if (!process.env.NEXT_PUBLIC_TO_EMAIL) {
     return {
       error: "Missing TO_EMAIL",
       success: false,
@@ -25,11 +25,11 @@ export const sendEmail = async ({ name, email, phone, message }) => {
   }
 
   try {
-    const resend = new Resend(process.env.RESEND_API_KEY);
+    const resend = new Resend(process.env.NEXT_PUBLIC_RESEND_API_KEY);
 
     await resend.emails.send({
-      from: process.env.FROM_EMAIL,
-      to: process.env.TO_EMAIL,
+      from: process.env.NEXT_PUBLIC_FROM_EMAIL,
+      to: process.env.NEXT_PUBLIC_TO_EMAIL,
       subject: "Contact request from RDR Solutions",
       html: EmailTemplateHtml({ name, email, phone, message }),
     });
