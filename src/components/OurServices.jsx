@@ -39,11 +39,11 @@ const items = [
   {
     id: 5,
     title: "Our Business Partners",
-    text: `Our distribution representing global brands and strong regional and local brands.
+    text: `Strong distribution representing global brands and strong regional and local brands.
     Oral care
     Personal care
     Laundry and Home Care
-    Food grocery’s
+    Food's Grocery
     Fresh and Produces`,
     logo: "peopleIcon",
   },
