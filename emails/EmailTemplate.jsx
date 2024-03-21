@@ -8,17 +8,30 @@ import {
   Section,
   Img,
   Row,
+  Font,
 } from "@react-email/components";
 import { Tailwind } from "@react-email/tailwind";
 
 const baseUrl = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
+  ? `https://${process.env.VERCEL_URL}/emails`
   : "";
 
 const EmailTemplate = ({ name, email, phone, message }) => {
   return (
     <Html>
-      <Head />
+      <Head>
+        <Font
+          fontFamily="Poppins"
+          fallbackFontFamily="Verdana"
+          webFont={{
+            url: "https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap",
+            format: "embedded-opentype",
+          }}
+          fontWeight={400}
+          fontStyle="normal"
+        />
+      </Head>
+
       <Preview>Contact request from RDR Solutions</Preview>
 
       <Tailwind>
