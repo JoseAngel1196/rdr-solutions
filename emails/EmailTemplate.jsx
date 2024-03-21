@@ -1,9 +1,6 @@
-"use client";
-
 import {
   Html,
   Text,
-  render,
   Body,
   Head,
   Preview,
@@ -14,23 +11,26 @@ import {
 } from "@react-email/components";
 import { Tailwind } from "@react-email/tailwind";
 
-import Footer from "./Footer";
+const baseUrl = process.env.VERCEL_URL
+  ? `https://${process.env.VERCEL_URL}`
+  : "";
 
 const EmailTemplate = ({ name, email, phone, message }) => {
   return (
     <Html>
-      <Tailwind>
-        <Head />
-        <Preview>Contact request from RDR Solutions</Preview>
+      <Head />
+      <Preview>Contact request from RDR Solutions</Preview>
 
-        <Body className="bg-[#3E5D9D] mt-5 mx-auto text-white font-sans px-2 flex flex-col min-h-screen">
+      <Tailwind>
+        <Body className="bg-[#3E5D9D] mt-5 mx-auto text-white font-sans px-2 flex flex-col">
           <Container>
             <Section>
               <Img
-                src={"/assets/images/LogoBlue.webp"}
-                width="105"
-                height="30"
+                src={`${baseUrl}/static/LogoBlue.webp`}
+                width="150"
+                height="50"
                 alt="Logo"
+                className="w-[150px] h-[50px] object-contain"
               />
             </Section>
 
@@ -56,15 +56,10 @@ const EmailTemplate = ({ name, email, phone, message }) => {
               </Row>
             </Section>
           </Container>
-
-          <Footer />
         </Body>
       </Tailwind>
     </Html>
   );
 };
 
-export const EmailTemplateHtml = (props) =>
-  render(<EmailTemplate {...props} />, {
-    pretty: true,
-  });
+export default EmailTemplate;

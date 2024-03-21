@@ -12,7 +12,6 @@ import { toast } from "sonner";
 import { useFormik } from "formik";
 
 import { ContactSchema } from "@/validations/ContactSchema";
-import { sendEmail } from "@/actions";
 
 const Form = () => {
   const formik = useFormik({
@@ -24,22 +23,25 @@ const Form = () => {
     },
     validationSchema: ContactSchema,
     onSubmit: async (values) => {
-      const sendEmailFunction = await sendEmail({
-        name: values.name,
-        email: values.email,
-        phone: values.phone,
-        message: values.message,
-      });
+      const sendEmail = await fetch("/api/send", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      })
+        .then((res) => res.json())
+        .catch((error) => console.log(error));
 
-      if (sendEmailFunction.error) {
-        toast.error(sendEmailFunction.error, {
+      if (sendEmail.error) {
+        toast.error(sendEmail.error, {
           style: { background: "#0E5F8C", color: "#fff" },
         });
 
         return;
       }
 
-      if (sendEmailFunction.success) {
+      if (sendEmail.success) {
         toast.success(
           "Thank you for reaching out!, We will get back to you soon",
           {
@@ -101,7 +103,9 @@ const Form = () => {
               <div className="flex flex-col gap-2 font-sans text-lg font-medium text-white/75">
                 <span className="flex items-center space-x-4">
                   <FaEnvelope />
-                  <Link href="mailto:info@rdrsolution.com">info@rdrsolution.com</Link>
+                  <Link href="mailto:info@rdrsolution.com">
+                    info@rdrsolution.com
+                  </Link>
                 </span>
 
                 <span className="flex items-center space-x-4">
@@ -111,7 +115,10 @@ const Form = () => {
 
                 <span className="flex items-center space-x-4">
                   <IoLocationSharp />
-                  <Link href="https://maps.app.goo.gl/hU1Npt2drATq1ogC7" target="_blank">
+                  <Link
+                    href="https://maps.app.goo.gl/hU1Npt2drATq1ogC7"
+                    target="_blank"
+                  >
                     175 SW, 7TH St Suite 1815, Miami FL 33130, USA
                   </Link>
                 </span>
