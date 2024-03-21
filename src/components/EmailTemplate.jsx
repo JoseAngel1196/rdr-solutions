@@ -19,10 +19,10 @@ import Footer from "./Footer";
 const EmailTemplate = ({ name, email, phone, message }) => {
   return (
     <Html>
-      <Head />
-      <Preview>Contact request from RDR Solutions</Preview>
-
       <Tailwind>
+        <Head />
+        <Preview>Contact request from RDR Solutions</Preview>
+
         <Body className="bg-[#3E5D9D] mt-5 mx-auto text-white font-sans px-2 flex flex-col min-h-screen">
           <Container>
             <Section>

@@ -1,6 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 import { useEffect } from "react";
 
@@ -12,7 +13,7 @@ import { useFormik } from "formik";
 
 import { ContactSchema } from "@/validations/ContactSchema";
 import { sendEmail } from "@/actions";
-import Link from "next/link";
+
 const Form = () => {
   const formik = useFormik({
     initialValues: {
