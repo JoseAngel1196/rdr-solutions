@@ -14,13 +14,13 @@ import {
 import { Tailwind } from "@react-email/tailwind";
 
 const baseUrl = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}/emails`
+  ? `https://${process.env.VERCEL_URL}`
   : "";
 
 const devData = {
   name: "Dev Name",
   email: "JpUzK@example.com",
-  phone: "541234567",
+  phone: "+5491234567",
   message: "Dev Message",
 };
 
@@ -92,7 +92,10 @@ const EmailTemplate = ({
 
                 <Text>
                   <strong>From: </strong>
-                  <Link href={`mailto:${email}`} className="text-white underline">
+                  <Link
+                    href={`mailto:${email}`}
+                    className="text-white underline"
+                  >
                     {email}
                   </Link>
                 </Text>
