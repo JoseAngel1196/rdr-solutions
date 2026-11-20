@@ -1,5 +1,6 @@
 import Hero from "@/components/Hero";
 import Brands from "@/components/Brands";
+import Trust from "@/components/Trust";
 import Services from "@/components/Services";
 import HowWeWork from "@/components/HowWeWork";
 import Network from "@/components/Network";
@@ -10,6 +11,7 @@ export default function Index() {
     <>
       <Hero />
       <Brands />
+      <Trust />
       <Services />
       <HowWeWork />
       <Network />
