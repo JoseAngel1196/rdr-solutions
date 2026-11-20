@@ -1,161 +1,54 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 
-import { useEffect, useState } from "react";
-
-import {
-  AiFillFacebook,
-  AiFillInstagram,
-  AiFillLinkedin,
-} from "react-icons/ai";
-import { RiTwitterXFill } from "react-icons/ri";
+import { navLinks } from "@/content/site";
+import CurrentYear from "./CurrentYear";
+import SocialLinks from "./SocialLinks";
 
 const Footer = () => {
-  const pathname = usePathname();
-  const [isWideScreen, setIsWideScreen] = useState(false);
-
-  useEffect(() => {
-    function handleResize() {
-      setIsWideScreen(window.innerWidth >= 1536);
-    }
-
-    handleResize();
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
   return (
-    <footer
-      className={`${
-        pathname === "/contact"
-          ? "bg-[#3E5D9D] text-white 2xl:bg-white"
-          : "bg-white text-[#3E5D9D]"
-      } flex flex-col md:flex-row justify-center md:justify-between items-center py-[24px] px-[20px] gap-[24px] mt-auto lg:max-h-[100px] shadow-inner`}
-    >
-      <Image
-        alt="logo"
-        src={`${
-          pathname === "/contact"
-            ? isWideScreen
-              ? "/assets/images/Logo.webp"
-              : "/assets/images/LogoBlue.webp"
-            : "/assets/images/Logo.webp"
-        }`}
-        width={315}
-        height={90}
-        priority
-        className="w-[167px] h-[45px]"
-      />
-
-      <span className={"2xl:text-[#3E5D9D]"}>
-        Copyright © {new Date().getFullYear()} -{" "}
-        <span className="font-bold underline">RDR Solutions, LLC</span>
-      </span>
-
-      <span className="flex flex-row items-center gap-[20px]">
-        <Link
-          href="https://www.instagram.com/rdrsolutions/"
-          className={`${
-            pathname === "/contact"
-              ? isWideScreen
-                ? "bg-[#3E5D9D]"
-                : "bg-white"
-              : "bg-[#3E5D9D]"
-          } p-[7px] rounded-full`}
-          target="_blank"
-        >
-          <AiFillInstagram
-            width={16}
-            height={16}
-            color={`${
-              pathname === "/contact"
-                ? isWideScreen
-                  ? "#fff"
-                  : "#3E5D9D"
-                : "#fff"
-            }`}
+    <footer className="on-dark border-t border-white/10 bg-harbor text-white/75">
+      <div className="page-x flex flex-col gap-8 py-10 md:flex-row md:items-center md:justify-between">
+        <Link href="/" aria-label="RDR Solutions home" className="shrink-0">
+          <Image
+            src="/assets/images/LogoBlue.webp"
+            alt="RDR Solutions"
+            width={316}
+            height={89}
+            className="h-9 w-auto"
           />
         </Link>
 
-        <Link
-          href="https://www.facebook.com/rdrsolutions/"
-          className={`${
-            pathname === "/contact"
-              ? isWideScreen
-                ? "bg-[#3E5D9D]"
-                : "bg-white"
-              : "bg-[#3E5D9D]"
-          } p-[7px] rounded-full`}
-          target="_blank"
-        >
-          <AiFillFacebook
-            width={16}
-            height={16}
-            color={`${
-              pathname === "/contact"
-                ? isWideScreen
-                  ? "#fff"
-                  : "#3E5D9D"
-                : "#fff"
-            }`}
-          />
-        </Link>
+        <nav aria-label="Footer">
+          <ul className="flex flex-wrap gap-x-6 gap-y-2 text-[0.95rem]">
+            {navLinks
+              .filter((link) => !link.hidden)
+              .map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="hover:text-white">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            <li>
+              <Link href="/contact" className="hover:text-white">
+                Contact
+              </Link>
+            </li>
+            <li>
+              <Link href="/join" className="hover:text-white">
+                Join our team
+              </Link>
+            </li>
+          </ul>
+        </nav>
 
-        <Link
-          href="https://twitter.com/llcrdr630?s=11&t=FRwx8M6iJRKTDiuo61CEpw"
-          className={`${
-            pathname === "/contact"
-              ? isWideScreen
-                ? "bg-[#3E5D9D]"
-                : "bg-white"
-              : "bg-[#3E5D9D]"
-          } p-[7px] rounded-full`}
-          target="_blank"
-        >
-          <RiTwitterXFill
-            width={16}
-            height={16}
-            color={`${
-              pathname === "/contact"
-                ? isWideScreen
-                  ? "#fff"
-                  : "#3E5D9D"
-                : "#fff"
-            }`}
-          />
-        </Link>
+        <SocialLinks tone="dark" />
+      </div>
 
-        <Link
-          href="https://www.linkedin.com/in/rdr-solutions-llc-4b8333191/"
-          className={`${
-            pathname === "/contact"
-              ? isWideScreen
-                ? "bg-[#3E5D9D]"
-                : "bg-white"
-              : "bg-[#3E5D9D]"
-          } p-[7px] rounded-full`}
-          target="_blank"
-        >
-          <AiFillLinkedin
-            width={16}
-            height={16}
-            color={`${
-              pathname === "/contact"
-                ? isWideScreen
-                  ? "#fff"
-                  : "#3E5D9D"
-                : "#fff"
-            }`}
-          />
-        </Link>
-      </span>
+      <div className="page-x border-t border-white/10 py-6 text-sm text-white/60">
+        Copyright © <CurrentYear /> RDR Solutions, LLC
+      </div>
     </footer>
   );
 };

@@ -1,19 +1,53 @@
 "use client";
 
-import { usePathname } from "next/navigation";
-import Link from "next/link";
-
-import { useEffect } from "react";
-
-import { FaEnvelope } from "react-icons/fa";
-import { BsFillTelephoneFill } from "react-icons/bs";
-import { IoLocationSharp } from "react-icons/io5";
+import { PiEnvelopeSimple, PiMapPin, PiPhone } from "react-icons/pi";
 import { toast } from "sonner";
 import { useFormik } from "formik";
 
+import { contact } from "@/content/site";
 import { ContactSchema } from "@/validations/ContactSchema";
+import SocialLinks from "./SocialLinks";
 
-const Form = () => {
+const copy = {
+  contact: {
+    title: "Let's get in touch",
+    intro:
+      "If you have an idea or project in mind and need help, reach out. We would love to hear about it and provide a solution.",
+  },
+  join: {
+    title: "Want to be part of our team?",
+    intro:
+      "We are always looking for talented people to join us. If you are a salesman and/or distributor, this is your opportunity to grow. Send us a message and join us today.",
+  },
+};
+
+const Field = ({ formik, name, label, className = "", children }) => {
+  const error = formik.touched[name] && formik.errors[name];
+  return (
+    <div className={className}>
+      <label htmlFor={name} className="mb-2 block text-sm font-semibold text-harbor">
+        {label}
+      </label>
+      {children({
+        id: name,
+        name,
+        value: formik.values[name],
+        onChange: formik.handleChange,
+        onBlur: formik.handleBlur,
+        disabled: formik.isSubmitting,
+        required: true,
+        "aria-invalid": Boolean(error),
+        "aria-describedby": `${name}-error`,
+        className: `field ${error ? "field-error" : ""}`,
+      })}
+      <p id={`${name}-error`} className="mt-1.5 min-h-[1.25rem] text-sm text-[#B42318]">
+        {error || ""}
+      </p>
+    </div>
+  );
+};
+
+const Form = ({ variant = "contact" }) => {
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -31,259 +65,116 @@ const Form = () => {
         body: JSON.stringify(values),
       })
         .then((res) => res.json())
-        .catch((error) => console.log(error));
+        .catch(() => ({ error: "Your message could not be sent. Check your connection and try again." }));
 
       if (sendEmail.error) {
-        toast.error(sendEmail.error, {
-          style: { background: "#0E5F8C", color: "#fff" },
-        });
-
+        toast.error(sendEmail.error);
         return;
       }
 
       if (sendEmail.success) {
-        toast.success(
-          "Thank you for reaching out!, We will get back to you soon",
-          {
-            style: { background: "#0E5F8C", color: "#fff" },
-          }
-        );
-
+        toast.success("Thank you for reaching out! We will get back to you soon.");
         formik.resetForm();
       }
     },
   });
 
-  const pathname = usePathname();
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  const { title, intro } = copy[variant];
 
   return (
-    <div className="container mx-auto">
-      <div className="absolute inset-0 h-[calc(100%-15%)] md:h-[calc(100%-17%)] 2xl:h-full bg-[#3E5D9D]" />
+    <div className="page-x grid gap-12 py-14 md:py-20 lg:grid-cols-12 lg:gap-16">
+      <div className="lg:col-span-5">
+        <h1 className="font-serif text-[2.75rem] leading-[1.04] tracking-[-0.02em] text-harbor sm:text-6xl">
+          {title}
+        </h1>
+        <p className="mt-6 max-w-[42ch] text-lg leading-relaxed text-ink/80">
+          {intro}
+        </p>
 
-      <div
-        className={`relative ${
-          pathname === "/contact" && "3xl:mt-[10%]"
-        } mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8`}
-      >
-        <div className="grid grid-cols-1 gap-x-16 gap-y-8 lg:grid-cols-5">
-          <div className="lg:col-span-2 lg:py-12">
-            <div className="flex flex-col justify-start gap-5">
-              <h1 className="text-lg font-sans font-semibold text-white/75">
-                {pathname === "/contact"
-                  ? "Let´s get in touch"
-                  : "Want to be part of our team?"}
-              </h1>
-
-              <h2
-                className={`text-white font-header text-2xl ${
-                  pathname === "/contact"
-                    ? "xl:text-4xl 2xl:text-5xl"
-                    : "xl:text-3xl 2xl:text-4xl"
-                } font-bold tracking-tight`}
-              >
-                {pathname === "/contact" ? (
-                  <p>
-                    If you have an idea or project in mind and you need
-                    help?…Reach out, we would love to hear about it and provide
-                    a solution!
-                  </p>
-                ) : (
-                  "We are always looking for talented people to join us. If you are a Salesman and/or distributor this is your opportunity to grow. Send us an email in contact us section. Join us today!"
-                )}
-              </h2>
-
-              <h4 className="font-sans text-lg font-semibold text-white/75">
-                Contact information
-              </h4>
-
-              <div className="flex flex-col gap-2 font-sans text-lg font-medium text-white/75">
-                <span className="flex items-center space-x-4">
-                  <FaEnvelope />
-                  <Link href="mailto:info@rdrsolution.com">
-                    info@rdrsolution.com
-                  </Link>
-                </span>
-
-                <span className="flex items-center space-x-4">
-                  <BsFillTelephoneFill />
-                  <Link href="tel:3055429612">(305)542-9612</Link>
-                </span>
-
-                <span className="flex items-center space-x-4">
-                  <IoLocationSharp />
-                  <Link
-                    href="https://maps.app.goo.gl/hU1Npt2drATq1ogC7"
-                    target="_blank"
-                  >
-                    175 SW, 7TH St Suite 1815, Miami FL 33130, USA
-                  </Link>
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <div className="rounded-lg bg-[#F7F7F7] p-8 shadow-2xl lg:col-span-3 lg:p-12">
-            <h3 className="mb-8 text-2xl md:text-3xl xl:text-4xl 2xl:text-5xl font-bold font-header text-[#0E5F8C] tracking-tight">
-              Send us a message
-            </h3>
-
-            <form
-              className="font-sans text-lg font-medium"
-              onSubmit={formik.handleSubmit}
+        <h2 className="mt-12 text-base font-semibold text-harbor">
+          Contact information
+        </h2>
+        <ul className="mt-4 space-y-4 text-lg text-ink/85">
+          <li>
+            <a href={`mailto:${contact.email}`} className="flex items-center gap-4 hover:text-brand">
+              <PiEnvelopeSimple size={24} className="shrink-0 text-brand" aria-hidden="true" />
+              {contact.email}
+            </a>
+          </li>
+          <li>
+            <a href={contact.phoneHref} className="flex items-center gap-4 hover:text-brand">
+              <PiPhone size={24} className="shrink-0 text-brand" aria-hidden="true" />
+              {contact.phone}
+            </a>
+          </li>
+          <li>
+            <a
+              href={contact.mapHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start gap-4 hover:text-brand"
             >
-              <div className="space-y-2">
-                <label className="block" htmlFor="name">
-                  <span className="block font-medium text-gray-800 p-3">
-                    Your Name
-                  </span>
+              <PiMapPin size={24} className="mt-0.5 shrink-0 text-brand" aria-hidden="true" />
+              {contact.address}
+            </a>
+          </li>
+        </ul>
+        <SocialLinks className="mt-8" />
+      </div>
 
-                  <input
-                    className={`w-full rounded-lg bg-[#DAF0FB] border border-gray-300 p-3 placeholder:text-sm shadow-sm focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 disabled:cursor-not-allowed disabled:opacity-50 ${
-                      formik.errors.name &&
-                      "border-pink-500 ring-pink-500 text-pink-600 bg-pink-50 focus:border-pink-500 focus:ring-pink-500"
-                    }`}
-                    placeholder="Enter your full name here"
-                    type="text"
-                    id="name"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.name}
-                    disabled={formik.isSubmitting}
-                    name="name"
-                    autoComplete="given-name"
-                    aria-label="Name"
-                    required
-                    aria-required
-                    aria-invalid={formik.errors.name && formik.touched.name}
-                  />
-                </label>
+      <div className="rounded-3xl bg-white p-6 ring-1 ring-harbor/10 sm:p-10 lg:col-span-7">
+        <h2 className="font-serif text-3xl text-harbor sm:text-4xl">
+          Send us a message
+        </h2>
 
-                <p className="text-red-500 text-sm pl-3">
-                  {formik.errors.name || "\u00A0"}
-                </p>
-              </div>
+        <form className="mt-8" onSubmit={formik.handleSubmit} noValidate>
+          <Field formik={formik} name="name" label="Your name">
+            {(props) => (
+              <input {...props} type="text" autoComplete="name" placeholder="Full name" />
+            )}
+          </Field>
 
-              <div className="grid grid-cols-1 md:gap-x-4 sm:grid-cols-2">
-                <div className="space-y-2">
-                  <label className="block" htmlFor="email">
-                    <span className="block font-medium text-gray-800 p-3">
-                      Your Email address
-                    </span>
-
-                    <input
-                      className={`w-full rounded-lg bg-[#DAF0FB] border border-gray-300 p-3 placeholder:text-sm shadow-sm focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 disabled:cursor-not-allowed disabled:opacity-50 lowercase placeholder:normal-case ${
-                        formik.errors.email &&
-                        "border-pink-500 ring-pink-500 text-pink-600 bg-pink-50 focus:border-pink-500 focus:ring-pink-500"
-                      }`}
-                      placeholder={"Enter your email address here"}
-                      type="email"
-                      id="email"
-                      onChange={formik.handleChange}
-                      onBlur={formik.handleBlur}
-                      value={formik.values.email}
-                      disabled={formik.isSubmitting}
-                      name="email"
-                      required
-                      autoComplete="email"
-                      aria-label="Email"
-                      aria-required
-                      aria-invalid={formik.errors.email && formik.touched.email}
-                      aria-describedby="email-description"
-                      autoCapitalize="off"
-                      spellCheck="false"
-                      autoCorrect="off"
-                      inputMode="email"
-                    />
-                  </label>
-
-                  <p className="text-red-500 text-sm pl-3">
-                    {formik.errors.email || "\u00A0"}
-                  </p>
-                </div>
-
-                <div className="space-y-2">
-                  <label className="block" htmlFor="phone">
-                    <span className="block font-medium text-gray-800 p-3">
-                      Your phone number
-                    </span>
-
-                    <input
-                      className={`w-full rounded-lg bg-[#DAF0FB] border border-gray-300 p-3 placeholder:text-sm shadow-sm focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 disabled:cursor-not-allowed disabled:opacity-50 ${
-                        formik.errors.phone &&
-                        "border-pink-500 ring-pink-500 text-pink-600 bg-pink-50 focus:border-pink-500 focus:ring-pink-500"
-                      }`}
-                      placeholder={"Please fill in your phone number"}
-                      type="tel"
-                      id="phone"
-                      onChange={formik.handleChange}
-                      onBlur={formik.handleBlur}
-                      value={formik.values.phone}
-                      disabled={formik.isSubmitting}
-                      name="phone"
-                      required
-                      autoComplete="tel"
-                      aria-label="Phone"
-                      aria-required
-                      aria-describedby="phone-description"
-                      inputMode="tel"
-                      aria-invalid={formik.errors.phone && formik.touched.phone}
-                    />
-                  </label>
-
-                  <p className="text-red-500 text-sm pl-3">
-                    {formik.errors.phone || "\u00A0"}
-                  </p>
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <label className="block" htmlFor="message">
-                  <span className="block font-medium text-gray-800 p-3">
-                    Message
-                  </span>
-
-                  <textarea
-                    className={`w-full rounded-lg bg-[#DAF0FB] border border-gray-300 p-3 placeholder:text-sm shadow-sm focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 disabled:cursor-not-allowed disabled:opacity-50 ${
-                      formik.errors.message &&
-                      "border-pink-500 ring-pink-500 text-pink-600 bg-pink-50 focus:border-pink-500 focus:ring-pink-500"
-                    }`}
-                    placeholder={"Enter your message here"}
-                    rows="8"
-                    id="message"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.message}
-                    disabled={formik.isSubmitting}
-                    name="message"
-                    required
-                    aria-label="Message"
-                    aria-required
-                    aria-describedby="message-description"
-                    spellCheck
-                  ></textarea>
-                </label>
-
-                <p className="text-red-500 text-sm pl-3">
-                  {formik.errors.message || "\u00A0"}
-                </p>
-              </div>
-
-              <div className="mt-4">
-                <button
-                  type="submit"
-                  disabled={formik.isSubmitting}
-                  className="bg-[#6C9DD7] text-white shadow-lg rounded-[35px] py-[13px] px-5 w-full sm:w-auto font-sans font-medium inline-block disabled:cursor-not-allowed disabled:opacity-50"
-                >
-                  Send my contact request
-                </button>
-              </div>
-            </form>
+          <div className="grid gap-x-4 sm:grid-cols-2">
+            <Field formik={formik} name="email" label="Email address">
+              {(props) => (
+                <input
+                  {...props}
+                  type="email"
+                  autoComplete="email"
+                  inputMode="email"
+                  autoCapitalize="off"
+                  spellCheck="false"
+                  placeholder="you@company.com"
+                />
+              )}
+            </Field>
+            <Field formik={formik} name="phone" label="Phone number">
+              {(props) => (
+                <input
+                  {...props}
+                  type="tel"
+                  autoComplete="tel"
+                  inputMode="tel"
+                  placeholder="(305) 000-0000"
+                />
+              )}
+            </Field>
           </div>
-        </div>
+
+          <Field formik={formik} name="message" label="Message">
+            {(props) => (
+              <textarea {...props} rows={6} placeholder="Tell us about your business or idea" />
+            )}
+          </Field>
+
+          <button
+            type="submit"
+            disabled={formik.isSubmitting}
+            className="btn-signal mt-2 w-full disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+          >
+            {formik.isSubmitting ? "Sending…" : "Send message"}
+          </button>
+        </form>
       </div>
     </div>
   );

@@ -1,152 +1,124 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 
-import { FaBars, FaTimes } from "react-icons/fa";
+import { PiList, PiX } from "react-icons/pi";
+
+import { navLinks } from "@/content/site";
+
+const visibleLinks = navLinks.filter((link) => !link.hidden);
 
 const Navbar = () => {
-  const navRef = useRef(null);
-  const router = useRouter();
   const pathname = usePathname();
-
-  const [activeSection, setActiveSection] = useState("Home");
-
-  const goToSection = (section) => {
-    const sectionId = document.getElementById(section);
-
-    sectionId?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  const handleNavClick = (sectionId) => {
-    setActiveSection(sectionId);
-  };
-
-  const showNavbar = () => {
-    navRef.current.classList.toggle("responsive_nav");
-    navRef.current.classList.remove("justify-end");
-  };
-
-  const hideNavbar = () => {
-    navRef.current.classList.remove("responsive_nav");
-  };
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleIntersection = (entries, observer) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const sectionId = entry.target.getAttribute("id");
-          if (sectionId !== activeSection?.id) {
-            setActiveSection(entry.target);
-          }
-        }
-      });
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e) => e.key === "Escape" && setOpen(false);
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
     };
-
-    const observer = new IntersectionObserver(handleIntersection, {
-      rootMargin: "-50% 0px -50% 0px",
-      threshold: 0,
-    });
-
-    const sections = document.querySelectorAll("section");
-    sections.forEach((section) => observer.observe(section));
-
-    return () => observer.disconnect();
-  }, [activeSection]);
+  }, [open]);
 
   return (
-    <header className="bg-white sticky top-0 z-[3] flex justify-between items-center p-5 font-sans">
-      <Image
-        onClick={() => router.push("/")}
-        src={"/assets/images/Logo.webp"}
-        width={315}
-        height={90}
-        alt="logo"
-        priority
-        className="w-[140px] h-[40px] cursor-pointer md:ml-5 lg:ml-12 select-none"
-      />
-
-      <nav ref={navRef} className="flex justify-end gap-[20px] lg:gap-[50px]">
-        <Link
-          href={"/#Home"}
-          onClick={() => {
-            handleNavClick("Home");
-            hideNavbar();
-            goToSection("Home");
-            window.scrollTo(0, 0);
-          }}
-          className={
-            activeSection === "Home"
-              ? "text-center text-[#6C9DD7] text-[1.5rem] md:text-base font-semibold leading-normal cursor-pointer bg-white md:bg-none rounded-2xl md:rounded-none px-5 md:px-0 py-1 md:py-0"
-              : "text-center text-white md:text-[#3E5D9D] text-[1.5rem] md:text-base font-semibold leading-normal hover:text-[#6C9DD7] transition-all duration-300 cursor-pointer"
-          }
-        >
-          Home
+    <header
+      className={`sticky top-0 z-40 transition-colors duration-300 ${
+        scrolled || open
+          ? "bg-white/90 backdrop-blur-md shadow-[0_1px_0_rgba(22,38,74,0.08)]"
+          : "bg-mist"
+      }`}
+    >
+      <div className="page-x flex h-[4.5rem] items-center justify-between gap-6">
+        <Link href="/" aria-label="RDR Solutions home" className="shrink-0">
+          <Image
+            src="/assets/images/Logo.webp"
+            width={315}
+            height={90}
+            alt="RDR Solutions"
+            priority
+            className="h-9 w-auto"
+          />
         </Link>
 
-        <Link
-          href={"/#brands"}
-          onClick={() => {
-            handleNavClick("brands");
-            hideNavbar();
-            goToSection("brands");
-          }}
-          className={
-            activeSection === "brands"
-              ? "text-center text-[#6C9DD7] text-[1.5rem] md:text-base font-semibold leading-normal cursor-pointer bg-white md:bg-none rounded-2xl md:rounded-none px-5 md:px-0 py-1 md:py-0"
-              : "text-center text-white md:text-[#3E5D9D] text-[1.5rem] md:text-base font-semibold leading-normal hover:text-[#6C9DD7] transition-all duration-300 cursor-pointer"
-          }
-        >
-          Our Brands
-        </Link>
+        <nav aria-label="Main" className="hidden md:block">
+          <ul className="flex items-center gap-8">
+            {visibleLinks.map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className="text-[0.95rem] font-medium text-harbor/80 transition-colors hover:text-brand"
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+            <li>
+              <Link href="/contact" className="btn-signal !px-5 !py-2.5 text-sm">
+                Get in touch
+              </Link>
+            </li>
+          </ul>
+        </nav>
 
-        <Link
-          href={"/#services"}
-          onClick={() => {
-            handleNavClick("services");
-            hideNavbar();
-            goToSection("services");
-          }}
-          className={
-            activeSection === "services"
-              ? "text-center text-[#6C9DD7] text-[1.5rem] md:text-base font-semibold leading-normal cursor-pointer bg-white md:bg-none rounded-2xl md:rounded-none px-5 md:px-0 py-1 md:py-0"
-              : "text-center text-white md:text-[#3E5D9D] text-[1.5rem] md:text-base font-semibold leading-normal hover:text-[#6C9DD7] transition-all duration-300 cursor-pointer"
-          }
+        <button
+          type="button"
+          className="md:hidden -mr-2 rounded-full p-2 text-harbor"
+          aria-expanded={open}
+          aria-controls="mobile-menu"
+          aria-label={open ? "Close menu" : "Open menu"}
+          onClick={() => setOpen((v) => !v)}
         >
-          Our Services
-        </Link>
-
-        <Link
-          href={pathname === "/" ? "/#ContactUs" : "/contact"}
-          onClick={() => {
-            handleNavClick("ContactUs");
-            hideNavbar();
-            goToSection("ContactUs");
-          }}
-          className={
-            activeSection === "ContactUs"
-              ? "text-center text-[#6C9DD7] text-[1.5rem] md:text-base font-semibold leading-normal cursor-pointer bg-white md:bg-none rounded-2xl md:rounded-none px-5 md:px-0 py-1 md:py-0"
-              : "text-center text-white md:text-[#3E5D9D] text-[1.5rem] md:text-base font-semibold leading-normal hover:text-[#6C9DD7] transition-all duration-300 cursor-pointer"
-          }
-        >
-          Contact Us
-        </Link>
-
-        <button className="nav-btn nav-close-btn" onClick={hideNavbar}>
-          <FaTimes />
+          {open ? <PiX size={28} /> : <PiList size={28} />}
         </button>
-      </nav>
+      </div>
 
-      <button
-        type="button"
-        title="menuIcon"
-        onClick={showNavbar}
-        className="nav-btn"
+      <nav
+        id="mobile-menu"
+        aria-label="Mobile"
+        hidden={!open}
+        className="md:hidden h-[calc(100dvh-4.5rem)] bg-white"
       >
-        <FaBars color="#3E5D9D" />
-      </button>
+        <ul className="page-x flex flex-col gap-1 pt-6">
+          {visibleLinks.map((link) => (
+            <li key={link.href}>
+              <Link
+                href={link.href}
+                onClick={() => setOpen(false)}
+                className="block border-b border-harbor/10 py-4 font-serif text-3xl text-harbor"
+              >
+                {link.label}
+              </Link>
+            </li>
+          ))}
+          <li className="pt-8">
+            <Link
+              href="/contact"
+              onClick={() => setOpen(false)}
+              className="btn-signal w-full"
+            >
+              Get in touch
+            </Link>
+          </li>
+        </ul>
+      </nav>
     </header>
   );
 };

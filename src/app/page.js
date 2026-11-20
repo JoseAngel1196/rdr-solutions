@@ -1,27 +1,19 @@
-"use client";
-
-import { useEffect } from "react";
-
-import Home from "@/components/Home";
-import OurBrands from "@/components/OurBrands";
-import OurServices from "@/components/OurServices";
-import ContactUs from "@/components/ContactUs";
-import Diagram from "@/components/Diagram";
+import Hero from "@/components/Hero";
+import Brands from "@/components/Brands";
+import Services from "@/components/Services";
+import HowWeWork from "@/components/HowWeWork";
+import Network from "@/components/Network";
+import ClosingCta from "@/components/ClosingCta";
 
 export default function Index() {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   return (
     <>
-      <Home />
-      <div className="overflow-x-hidden">
-        <OurBrands />
-        <OurServices />
-        <Diagram />
-        <ContactUs />
-      </div>
+      <Hero />
+      <Brands />
+      <Services />
+      <HowWeWork />
+      <Network />
+      <ClosingCta />
     </>
   );
 }
