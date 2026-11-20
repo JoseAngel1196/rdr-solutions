@@ -32,21 +32,31 @@ export const navLinks = [
   { label: "Shop", href: "/shop", hidden: true },
 ];
 
-// `ratio` is width / height of the trimmed logo file.
+// Content marked TODO(client) is waiting on real information from RDR.
+// Anything left null/empty renders nothing on the site.
+
+// TODO(client): the exact relationship with these brands (authorized
+// distributor, representative, ...) and the markets it covers. Avoid "work
+// with" / "partner" wording until confirmed.
+export const brandsRelationship = null;
+
+// `ratio` is width / height of the trimmed logo file. `scale` evens out visual
+// weight inside the 160x64 logo box: solid-box and very wide marks are pulled
+// down, light script marks nudged up.
 export const brands = [
-  { name: "Colgate", file: "Colgate_logo.webp", ratio: 3.95, group: "global" },
-  { name: "Palmolive", file: "Palmolive_logo.webp", ratio: 3.25, group: "global" },
-  { name: "Fabuloso", file: "Fabuloso_logo.webp", ratio: 2.33, group: "global" },
-  { name: "Ajax", file: "Ajax_logo.webp", ratio: 1.21, group: "global" },
-  { name: "Suavitel", file: "Suavitel_logo.webp", ratio: 2.15, group: "global" },
-  { name: "Fiori Bruna", file: "Fiori_Bruna_Logo.webp", ratio: 8.35, group: "regional" },
-  { name: "Bambú", file: "Bambu_logo.webp", ratio: 2.8, group: "regional" },
-  { name: "Guarina", file: "Guarina_logo.webp", ratio: 1.45, group: "regional" },
-  { name: "Lavador", file: "Lavador_logo.webp", ratio: 3.36, group: "regional" },
-  { name: "Magnifico", file: "Magnifico_logo.webp", ratio: 1.93, group: "regional" },
-  { name: "L'Dorado", file: "LDorado_logo.webp", ratio: 1.43, group: "regional" },
-  { name: "Ardil", file: "Ardil_logo.webp", ratio: 2.84, group: "regional" },
-  { name: "Tips Calbaq", file: "Tips_calbaq_logo.webp", ratio: 1.67, group: "regional" },
+  { name: "Colgate", file: "Colgate_logo.webp", ratio: 3.95, group: "global", scale: 0.85 },
+  { name: "Palmolive", file: "Palmolive_logo.webp", ratio: 3.25, group: "global", scale: 0.85 },
+  { name: "Fabuloso", file: "Fabuloso_logo.webp", ratio: 2.33, group: "global", scale: 0.9 },
+  { name: "Ajax", file: "Ajax_logo.webp", ratio: 1.21, group: "global", scale: 0.95 },
+  { name: "Suavitel", file: "Suavitel_logo.webp", ratio: 2.15, group: "global", scale: 1 },
+  { name: "Fiori Bruna", file: "Fiori_Bruna_Logo.webp", ratio: 8.35, group: "regional", scale: 1 },
+  { name: "Bambú", file: "Bambu_logo.webp", ratio: 2.8, group: "regional", scale: 0.85 },
+  { name: "Guarina", file: "Guarina_logo.webp", ratio: 1.45, group: "regional", scale: 0.85 },
+  { name: "Lavador", file: "Lavador_logo.webp", ratio: 3.36, group: "regional", scale: 0.9 },
+  { name: "Magnifico", file: "Magnifico_logo.webp", ratio: 1.93, group: "regional", scale: 0.9 },
+  { name: "L'Dorado", file: "LDorado_logo.webp", ratio: 1.43, group: "regional", scale: 0.95 },
+  { name: "Ardil", file: "Ardil_logo.webp", ratio: 2.84, group: "regional", scale: 0.8 },
+  { name: "Tips Calbaq", file: "Tips_calbaq_logo.webp", ratio: 1.67, group: "regional", scale: 0.8 },
 ];
 
 export const services = [

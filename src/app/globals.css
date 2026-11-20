@@ -55,24 +55,14 @@
   }
 }
 
-/* Brand wall: logos rest in a single ink tone and recover their own colours on hover/focus. */
+/* Brand wall: full colour, slightly recessed until hovered. */
 .brand-logo {
-  filter: grayscale(1) contrast(1.05);
-  opacity: 0.7;
-  transition: filter 300ms ease, opacity 300ms ease;
+  opacity: 0.85;
+  transition: opacity 300ms ease;
 }
 
-.brand-cell:hover .brand-logo,
-.brand-cell:focus-within .brand-logo {
-  filter: none;
+.brand-cell:hover .brand-logo {
   opacity: 1;
-}
-
-@media (hover: none) {
-  .brand-logo {
-    filter: none;
-    opacity: 1;
-  }
 }
 
 /* Hero entrance: the one orchestrated moment on the page. */
