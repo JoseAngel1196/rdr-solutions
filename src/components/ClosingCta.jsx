@@ -20,9 +20,9 @@ const ClosingCta = () => {
         <div className="lg:col-span-7">
           <h2
             id="closing-title"
-            className="max-w-[16ch] font-serif text-[2.75rem] leading-[1.04] tracking-[-0.02em] sm:text-6xl lg:text-7xl"
+            className="max-w-[18ch] text-balance font-serif text-[2.75rem] leading-[1.04] tracking-[-0.02em] sm:text-6xl lg:text-7xl"
           >
-            Let&apos;s talk about your idea or your business
+            Tell us where you want your brand to be.
           </h2>
           <p className="mt-6 max-w-[44ch] text-lg leading-relaxed text-white/80 sm:text-xl">
             Have an idea or a project in mind and need help? Reach out. We would

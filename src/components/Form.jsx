@@ -185,6 +185,12 @@ const Form = ({ variant = "contact" }) => {
           >
             {formik.isSubmitting ? "Sending…" : submit}
           </button>
+          {variant === "contact" && typeof contact.replyDays === "number" && (
+            <p className="mt-4 text-sm text-ink/70">
+              We&apos;ll reply within {contact.replyDays} business{" "}
+              {contact.replyDays === 1 ? "day" : "days"}.
+            </p>
+          )}
         </form>
       </div>
     </div>

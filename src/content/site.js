@@ -4,11 +4,16 @@ export const servicesIntro =
   "Simple solutions built around your needs, your priorities and your budget.";
 
 export const contact = {
+  // TODO(client): confirm the email domain before launch. The site uses
+  // rdrsolution.com (no "s") while the brand is RDR Solutions.
   email: "info@rdrsolution.com",
   phone: "(305) 542-9612",
   phoneHref: "tel:+13055429612",
   address: "175 SW 7th St, Suite 1815, Miami, FL 33130, USA",
   mapHref: "https://maps.app.goo.gl/hU1Npt2drATq1ogC7",
+  // TODO(client): realistic reply time in business days. The line under the
+  // contact form renders only when this is a number.
+  replyDays: null,
 };
 
 export const socials = [
@@ -20,7 +25,9 @@ export const socials = [
   },
   {
     name: "LinkedIn",
-    href: "https://www.linkedin.com/in/rdr-solutions-llc-4b8333191/",
+    // TODO(client): company page URL. The old link pointed to a personal
+    // profile; the icon stays hidden until this is set.
+    href: null,
   },
 ];
 

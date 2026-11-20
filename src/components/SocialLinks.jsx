@@ -22,7 +22,7 @@ const SocialLinks = ({ className = "", tone = "light" }) => {
 
   return (
     <ul className={`flex items-center gap-3 ${className}`}>
-      {socials.map(({ name, href }) => {
+      {socials.filter(({ href }) => href).map(({ name, href }) => {
         const Icon = icons[name];
         return (
           <li key={name}>
