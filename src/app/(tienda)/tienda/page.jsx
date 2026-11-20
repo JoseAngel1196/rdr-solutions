@@ -2,7 +2,6 @@ import Image from "next/image";
 
 import Catalog from "@/components/tienda/Catalog";
 import WhatsAppButton from "@/components/tienda/WhatsAppButton";
-import { CATALOG_EDITION } from "@/data/fuxion-products";
 
 const title = "Tienda FuXion — Andrés Rosa";
 const description =
@@ -81,27 +80,29 @@ export default function TiendaPage() {
             </div>
           </div>
         </div>
-
       </section>
 
       <Catalog />
 
-      <section aria-label="Avisos" className="border-t border-leaf/10 bg-white py-12">
+      <section aria-label="Avisos" className="border-t border-leaf/15 bg-sage py-8">
         <div className="page-x">
-          <div className="max-w-3xl space-y-3 text-sm leading-relaxed text-ink/75">
-          <p className="font-semibold text-harbor">
-            Distribuidor Independiente FuXion. Las compras se procesan en la
-            tienda oficial de FuXion.
-          </p>
-          <p>
-            Estas declaraciones no han sido evaluadas por la FDA. Estos
-            productos no están destinados a diagnosticar, tratar, curar o
-            prevenir ninguna enfermedad.
-          </p>
-          <p>
-            Precios en dólares estadounidenses según el {CATALOG_EDITION}. El
-            precio final se confirma en la tienda oficial de FuXion.
-          </p>
+          <div className="max-w-3xl space-y-2 text-[13px] leading-relaxed text-ink/75">
+            {/* TODO(client): append " · ID 3540969" (Andrés's FuXion distributor
+                ID, shown on his store page) only once he approves showing it. */}
+            <p className="font-semibold text-harbor">
+              Andrés Rosa · Distribuidor Independiente FuXion
+            </p>
+            {/* Prices come from CATALOG_EDITION in src/data/fuxion-products.ts. */}
+            <p>
+              Las compras, el pago y el envío se procesan en la tienda oficial
+              de FuXion. Precios en USD según el catálogo FuXion USA vigente; el
+              precio final se confirma al comprar.
+            </p>
+            <p>
+              Estas declaraciones no han sido evaluadas por la FDA. Estos
+              productos no están destinados a diagnosticar, tratar, curar o
+              prevenir ninguna enfermedad.
+            </p>
           </div>
         </div>
       </section>
