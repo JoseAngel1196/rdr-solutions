@@ -15,6 +15,19 @@ export const STORE_URL = "https://ifuxion.com/andresantorosa/enrollment/products
 // message prefilled and lets the visitor pick a contact.
 export const WHATSAPP_NUMBER = "";
 
+// Each line's category page in the FuXion store, used when a product has no
+// productUrl of its own.
+export const LINE_STORE_URL: Record<ProductLineId, string> = {
+  limpia: "https://ifuxion.com/andresantorosa/enrollment/products/1134",
+  regenera: "https://ifuxion.com/andresantorosa/enrollment/products/1135",
+  revitaliza: "https://ifuxion.com/andresantorosa/enrollment/products/1136",
+  inmunologica: "https://ifuxion.com/andresantorosa/enrollment/products/1138",
+  peso: "https://ifuxion.com/andresantorosa/enrollment/products/1139",
+  "anti-edad": "https://ifuxion.com/andresantorosa/enrollment/products/1140",
+  "vigor-mental": "https://ifuxion.com/andresantorosa/enrollment/products/1141",
+  sport: "https://ifuxion.com/andresantorosa/enrollment/products/1142",
+};
+
 export const CATALOG_EDITION = "Catálogo FuXion USA, edición N° 240715";
 
 export type ProductLineId =
@@ -50,8 +63,6 @@ export interface FuxionProduct {
   /** One entry per flavour; empty when the catalog lists none. */
   flavor: string[];
   image: string;
-  /** Sport packshots sit on a dark background. */
-  imageTone?: "light" | "dark";
   /** Catalog footnotes referenced by (*) in the text. */
   notes?: string[];
   /** Direct product link in the FuXion store; falls back to STORE_URL. */
@@ -104,8 +115,7 @@ export const products: FuxionProduct[] = [
     ],
     ingredients: "Fibras prebiótica + Vitaminas + Minerales",
     price: 44.0,
-    // The catalog badge says "Caja 30 x 7,5g"; the box artwork shows 28 × 5 g sticks.
-    size: "30 sobres × 7.5 g",
+    size: "28 sobres × 5 g",
     flavor: ["Limón"],
     image: "/tienda/liquid-fiber.webp",
   },
@@ -123,7 +133,7 @@ export const products: FuxionProduct[] = [
     ingredients:
       "Mix de fibras (psyllium, inulina de achicoria, mucílago de linaza) + Extracto de guindón + Kelp + Anís estrella",
     price: 44.0,
-    size: "28 sobres × 5 g",
+    size: "Doypack · 28 × 5 g",
     flavor: ["Guindón"],
     image: "/tienda/guindon-x.webp",
   },
@@ -191,7 +201,7 @@ export const products: FuxionProduct[] = [
     line: "regenera",
     tagline: "¡Activa tu sistema natural de protección!",
     description:
-      "Delicioso batido instantáneo a base de la proteína de la más alta calidad: Bioprotein+ con Colostrum®, formulación patentada por Fuxion® con 100% de Valor Biológico. Complemento de una sana nutrición diaria que activa y potencia el sistema de defensas del organismo.",
+      "Delicioso batido instantáneo a base de la proteína de la más alta calidad: Bioprotein+ con Colostrum®, formulación patentada por FuXion® con 100% de Valor Biológico. Complemento de una sana nutrición diaria que activa y potencia el sistema de defensas del organismo.",
     benefits: [
       "Elevar cualitativa y cuantitativamente el perfil proteico de la dieta diaria.",
       "Mejorar los procesos de regeneración celular.",
@@ -280,6 +290,7 @@ export const products: FuxionProduct[] = [
     ingredients:
       "Extracto de aloe vera + Beta glucanos + Mix de aminoácidos (N-acetilcisteína + Glicina + L-glutamina) + Extracto de hoja de oliva + Amalaki (vitamina C)",
     price: 55.0,
+    // TODO(client): confirm the pack format (box or doypack).
     size: "28 sobres × 5 g",
     flavor: ["Menta"],
     image: "/tienda/vera.webp",
@@ -317,7 +328,7 @@ export const products: FuxionProduct[] = [
     ingredients:
       "Mix de tés (verde, negro y rojo) + Cetonas de frambuesa + Garcinia cambogia + L-carnitina + Café verde + Ácido alfa lipoico + Vitamina B6 + Cromo",
     price: 44.0,
-    size: "28 sobres × 5 g",
+    size: "Doypack · 28 × 5 g",
     flavor: ["Té limón"],
     image: "/tienda/thermo-t3.webp",
     notes: [DIETA],
@@ -328,16 +339,15 @@ export const products: FuxionProduct[] = [
     line: "peso",
     tagline: "¡Mantén los carbohidratos a raya!",
     description:
-      "Deliciosa bebida, a base de Té verde y fibras solubles de Achicoria y Manzana que ayudan a reducir la absorción de carbohidratos, y Cromo que mantiene normales los niveles de glucosa en sangre.",
+      "Deliciosa bebida, a base de Té verde y fibras solubles de Achicoria y Manzana que ayudan a reducir la absorción de carbohidratos.",
     benefits: [
       "Controlar los carbohidratos de tu dieta.",
       "Reducir la acumulación de grasa en el organismo.",
-      "Mantener normales los niveles de glucosa (*).",
     ],
     ingredients:
       "Fibras solubles (fibra de yacón + Fibra de acacia + Inulina de achicoria + Pectina de manzana) + Verdolaga + Canela + Té verde + Cromo",
     price: 44.0,
-    size: "28 sobres × 5 g",
+    size: "Doypack · 28 × 5 g",
     flavor: ["Té manzana y canela"],
     image: "/tienda/nocarb-t.webp",
     notes: [DIETA],
@@ -367,7 +377,7 @@ export const products: FuxionProduct[] = [
     line: "peso",
     tagline: "¡Mantente en forma deliciosamente!",
     description:
-      "Chocolate Fit es una deliciosa bebida hecha a base de chocolate negro del Amazonas, crema no láctea y especias. Enriquecido con ácidos clorogénicos del café verde y CLA (Ácido Linoleico Conjugado), ingredientes que promueven la reducción de medidas y calman la ansiedad por comer (*).",
+      "Chocolate Fit es una deliciosa bebida hecha a base de chocolate negro del Amazonas, crema no láctea y especias. Enriquecido con ácidos clorogénicos del café verde y CLA (Ácido Linoleico Conjugado), ingredientes que promueven la reducción de medidas (*).",
     benefits: [
       "Reducir medidas corporales, al acelerar el metabolismo de las grasas (*).",
     ],
@@ -385,7 +395,7 @@ export const products: FuxionProduct[] = [
     line: "peso",
     tagline: "¡Mejora tu nutrición y reduce medidas!",
     description:
-      "Delicioso batido proteico con Bioprotein Colostrum, fórmula patentada por Fuxion, combinación de proteínas de alto valor biológico y alta biodisponibilidad con bajas calorías. Enriquecido con Prolibra y nutrientes que contribuyen a la nutrición muscular a nivel celular, promoviendo una tonificación adecuada de los músculos (*).",
+      "Delicioso batido proteico con Bioprotein Colostrum, fórmula patentada por FuXion, combinación de proteínas de alto valor biológico y alta biodisponibilidad con bajas calorías. Enriquecido con Prolibra y nutrientes que contribuyen a la nutrición muscular a nivel celular, promoviendo una tonificación adecuada de los músculos (*).",
     benefits: ["Mantener una nutrición celular adecuada."],
     ingredients:
       "Bioprotein+ con Colostrum® + Prolibra® + Aminoácidos + Tamarindo malabar + Vitaminas + DHA y ARA",
@@ -421,7 +431,7 @@ export const products: FuxionProduct[] = [
     line: "peso",
     tagline: "¡Pierde esas libras de más y gana salud! (*)",
     description:
-      "Programa de nutrición integral diseñado por profesionales de la salud que te ayudará a adquirir hábitos saludables de alimentación y estilo de vida, mientras reduces libras de más, tonificas tus músculos y ganas vitalidad (*).",
+      "Programa de nutrición integral que te ayudará a adquirir hábitos saludables de alimentación y estilo de vida, mientras reduces libras de más, tonificas tus músculos y ganas vitalidad (*).",
     benefits: [],
     ingredients:
       "4 Prunex1 + 28 Protein Active Fit vainilla & canela + 14 Vita Xtra T+ + 14 Thermo T3 + 14 Nocarb-T",
@@ -439,9 +449,8 @@ export const products: FuxionProduct[] = [
     line: "anti-edad",
     tagline: "¡Protege tu balance vital!",
     description:
-      "Delicioso té herbal que combina aminoácidos, extractos vegetales, vitaminas y minerales que te ayudan a equilibrar las molestias de los desbalances propios de la menopausia como cambios de humor y bochornos y las molestias que aparecen durante el periodo.",
+      "Delicioso té herbal que combina aminoácidos, extractos vegetales, vitaminas y minerales para apoyar el bienestar femenino.",
     benefits: [
-      "Controlar las molestias del periodo.",
       "Reforzar la salud femenina.",
       "Mantener tu balance durante la menopausia.",
     ],
@@ -472,7 +481,7 @@ export const products: FuxionProduct[] = [
   },
   {
     slug: "youth-elixir-hgh",
-    name: "Youth Elixir HGH",
+    name: "Youth Elixir",
     line: "anti-edad",
     tagline: "¡Mantén un cuerpo joven por más tiempo!",
     description:
@@ -511,14 +520,13 @@ export const products: FuxionProduct[] = [
     description:
       "Delicioso refresco nutritivo de guayaba con una potente combinación de péptidos de colágeno bioactivo que nutren tu piel desde adentro, para que luzca radiante y juvenil, por más tiempo. BEAUTY-IN utiliza péptidos bioactivos de colágeno (cuatro veces más potente que el colágeno convencional), que estimula a las células de la piel a producir más colágeno y elastina, trabajando en sinergia con los antioxidantes y vitaminas presentes en su formulación para una piel rejuvenecida.",
     benefits: [
-      "Mejorar la estructura de la dermis; para tener una piel con mayor elasticidad, más firme y uniforme (sin arrugas).",
-      "Nutrir, proteger y reparar la piel dañada.",
+      "Mejorar la estructura de la dermis, para una piel con mayor elasticidad, más firme y uniforme.",
       "Fortalecer el cabello y uñas.",
     ],
     ingredients:
       "Péptidos de colágeno bioactivo optimizado + Coenzima Q10 + Sesbania (biotina natural) + Concentrado de súper frutas exóticas (vitaminas C y E) + Zinc",
     price: 55.0,
-    size: "28 sobres × 5 g",
+    size: "Doypack · 28 × 5 g",
     flavor: ["Súper frutas exóticas"],
     image: "/tienda/beauty-in.webp",
   },
@@ -554,13 +562,14 @@ export const products: FuxionProduct[] = [
     description:
       "Deliciosa bebida nutritiva a base de aminoácidos esenciales y extractos de frutos conocidos por contribuir a mantener la sensación de equilibrio bajo condiciones de presión y optimizar los procesos cognitivos naturales manteniendo el enfoque sin producir somnolencia.",
     benefits: [
-      "Mantener la sensación de equilibrio frente al estrés y la ansiedad.",
+      "Mantener la sensación de equilibrio frente al estrés del día a día.",
       "Mantener la concentración y enfoque en momentos de gran tensión.",
       "Mejorar la capacidad de relajación.",
     ],
     ingredients:
       "Aminoácidos (L-teanina, glicina, triptófano) + Extracto de súper frutas (ashwagandha, amalaki y limón) + Magnesio en molécula orgánica + Vitaminas del complejo B",
     price: 44.0,
+    // TODO(client): confirm the pack format (box or doypack).
     size: "28 sobres × 5 g",
     flavor: ["Durazno mandarina"],
     image: "/tienda/off.webp",
@@ -585,7 +594,6 @@ export const products: FuxionProduct[] = [
     size: "28 sobres × 5 g",
     flavor: ["Sandía"],
     image: "/tienda/pre-sport.webp",
-    imageTone: "dark",
   },
   {
     slug: "xtra-mile",
@@ -595,7 +603,6 @@ export const products: FuxionProduct[] = [
     description:
       "Bebida isotónica de resistencia a base de Palatinose®, carbohidrato de bajo índice glicémico obtenido a partir de la betarraga, que brinda energía balanceada y sostenida en el tiempo. Además, su mix isotónico está hecho a base de agua de coco amazónico, 6 minerales (Potasio, Sodio, Calcio, Zinc, Cromo y Magnesio) y Sal de Maras, lo que permitirá que tu hidratación sea más eficiente, evitando la fatiga.",
     benefits: [
-      "Mantener saludables los niveles de glucosa.",
       "Mantener la energía de manera sostenida.",
       "Reducir la fatiga durante el ejercicio.",
     ],
@@ -605,7 +612,6 @@ export const products: FuxionProduct[] = [
     size: "28 sobres × 5 g",
     flavor: ["Naranja"],
     image: "/tienda/xtra-mile.webp",
-    imageTone: "dark",
   },
   {
     slug: "post-sport",
@@ -624,7 +630,6 @@ export const products: FuxionProduct[] = [
     size: "28 sobres × 5 g",
     flavor: ["Granada"],
     image: "/tienda/post-sport.webp",
-    imageTone: "dark",
   },
   {
     slug: "protein-active-sport",
@@ -644,7 +649,6 @@ export const products: FuxionProduct[] = [
     size: "14 sobres × 25 g",
     flavor: ["Vainilla y canela", "Chocolate con avellanas"],
     image: "/tienda/protein-active-sport.webp",
-    imageTone: "dark",
     notes: [DIETA],
   },
   {
@@ -653,7 +657,7 @@ export const products: FuxionProduct[] = [
     line: "sport",
     tagline: "¡Ejercicio saludable y músculos tonificados!",
     description:
-      "Batido proteico que ayuda a nutrir tus músculos adecuadamente para evitar su deterioro y promover un sano desarrollo de tu cuerpo, gracias a Bioprotein+ con Colostrum®, fórmula proteica patentada de Fuxion, enriquecida con Actinos® y aminoácidos.",
+      "Batido proteico que ayuda a nutrir tus músculos adecuadamente para evitar su deterioro y promover un sano desarrollo de tu cuerpo, gracias a Bioprotein+ con Colostrum®, fórmula proteica patentada de FuXion, enriquecida con Actinos® y aminoácidos.",
     benefits: [
       "Incrementar el flujo sanguíneo y el rendimiento gracias a Actinos®, formulación de péptidos patentada.",
       "Generar masa muscular magra y marcada en menos tiempo. (*)",
@@ -665,11 +669,11 @@ export const products: FuxionProduct[] = [
     size: "14 sobres × 25 g",
     flavor: ["Vainilla"],
     image: "/tienda/biopro-sport.webp",
-    imageTone: "dark",
     notes: [DIETA],
   },
 ];
 
-export const buyUrl = (product: FuxionProduct) => product.productUrl || STORE_URL;
+export const buyUrl = (product: FuxionProduct) =>
+  product.productUrl || LINE_STORE_URL[product.line] || STORE_URL;
 
 export const formatPrice = (price: number) => `$${price.toFixed(2)}`;

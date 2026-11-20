@@ -12,13 +12,18 @@ import {
   products,
 } from "@/data/fuxion-products";
 
-const firstSentence = (text) => {
-  const match = text.match(/^.*?[.!?](\s|$)/);
-  return (match ? match[0] : text).trim();
-};
+// Header (72px) + sticky chip bar; used to land results just below both.
+const HEADER_HEIGHT = 72;
+
+// Keep the unit attached to its number ("5 g" never splits across lines).
+const formatSize = (size) => size.replace(/ g\b/g, " g");
 
 const flavorLabel = (flavor) =>
-  flavor.length > 1 ? `Sabores: ${flavor.join(" · ")}` : flavor.length ? `Sabor ${flavor[0].toLowerCase()}` : null;
+  flavor.length > 1
+    ? `Sabores: ${flavor.join(" · ")}`
+    : flavor.length
+      ? `Sabor ${flavor[0].toLowerCase()}`
+      : null;
 
 const BuyButton = ({ product, className = "" }) => (
   <a
@@ -26,24 +31,22 @@ const BuyButton = ({ product, className = "" }) => (
     target="_blank"
     rel="noopener noreferrer"
     aria-label={`Comprar ${product.name} en la tienda oficial de FuXion (se abre en una pestaña nueva)`}
-    className={`btn bg-leaf !px-5 !py-2.5 text-sm text-white hover:bg-[#244a37] ${className}`}
+    className={`btn min-h-11 bg-leaf !px-5 !py-2.5 text-sm text-white hover:bg-[#244a37] ${className}`}
   >
     Comprar
     <PiArrowUpRight size={16} aria-hidden="true" />
   </a>
 );
 
-const ProductImage = ({ product, sizes, priority = false, className = "" }) => (
-  <div
-    className={`relative overflow-hidden ${product.imageTone === "dark" ? "bg-[#111]" : "bg-white"} ${className}`}
-  >
+// Packshots have white backgrounds; multiply blends them into the tile.
+const ProductImage = ({ product, sizes, className = "" }) => (
+  <div className={`relative overflow-hidden bg-[#F4F1EA] ${className}`}>
     <Image
       src={product.image}
       alt={product.name}
       fill
       sizes={sizes}
-      priority={priority}
-      className={product.imageTone === "dark" ? "object-cover" : "object-contain p-3"}
+      className="object-contain p-6 mix-blend-multiply"
     />
   </div>
 );
@@ -52,11 +55,11 @@ const ProductCard = ({ product, onOpen }) => (
   <li className="group relative flex flex-col overflow-hidden rounded-[20px] border border-harbor/[0.08] bg-white">
     <ProductImage
       product={product}
-      sizes="(min-width: 1280px) 300px, (min-width: 640px) 45vw, 92vw"
-      className="aspect-[4/3] w-full"
+      sizes="(min-width: 1024px) 400px, 50vw"
+      className="aspect-square w-full sm:aspect-[4/3]"
     />
-    <div className="flex flex-1 flex-col p-5 sm:p-6">
-      <h3 className="font-serif text-2xl leading-tight text-harbor">
+    <div className="flex flex-1 flex-col p-3 sm:p-6">
+      <h3 className="font-serif text-lg leading-tight text-harbor sm:text-2xl">
         <button
           type="button"
           onClick={() => onOpen(product)}
@@ -66,20 +69,22 @@ const ProductCard = ({ product, onOpen }) => (
           {product.name}
         </button>
       </h3>
-      <p className="mt-1 text-sm font-semibold text-leaf">{product.tagline}</p>
-      <p className="mt-3 line-clamp-3 text-[0.95rem] leading-relaxed text-ink/75">
-        {firstSentence(product.description)}
-      </p>
-      <span className="mt-3 text-sm font-semibold text-brand underline-offset-4 group-hover:underline" aria-hidden="true">
+      <p className="mt-1 hidden text-sm font-semibold text-leaf sm:block">{product.tagline}</p>
+      <span
+        className="mt-3 hidden text-sm font-semibold text-brand underline-offset-4 group-hover:underline sm:inline"
+        aria-hidden="true"
+      >
         Ver detalles
       </span>
     </div>
-    <div className="relative z-10 flex items-center justify-between gap-3 border-t border-harbor/[0.08] px-5 py-4 sm:px-6">
+    <div className="relative z-10 flex flex-col gap-3 px-3 pb-3 sm:flex-row sm:items-center sm:justify-between sm:border-t sm:border-harbor/[0.08] sm:px-6 sm:py-4">
       <p className="text-sm text-ink/75">
-        <span className="block text-lg font-semibold text-harbor">{formatPrice(product.price)}</span>
-        {product.size}
+        <span className="block text-base font-semibold text-harbor sm:text-lg">
+          {formatPrice(product.price)}
+        </span>
+        <span className="whitespace-nowrap text-xs sm:text-sm">{formatSize(product.size)}</span>
       </p>
-      <BuyButton product={product} />
+      <BuyButton product={product} className="w-full sm:w-auto" />
     </div>
   </li>
 );
@@ -111,7 +116,7 @@ const ProductDrawer = ({ product, onClose }) => {
       className="drawer m-0 ml-auto h-[100dvh] max-h-[100dvh] w-full max-w-xl bg-white p-0 text-ink backdrop:bg-harbor/50"
     >
       {product && (
-        <div className="flex min-h-full flex-col" lang="es">
+        <div className="flex min-h-full flex-col">
           <div className="sticky top-0 z-10 flex justify-end bg-white/90 p-3 backdrop-blur">
             <button
               type="button"
@@ -133,7 +138,7 @@ const ProductDrawer = ({ product, onClose }) => {
 
             <p className="mt-4 text-lg text-harbor">
               <span className="font-semibold">{formatPrice(product.price)}</span>
-              <span className="text-ink/75"> · {product.size}</span>
+              <span className="whitespace-nowrap text-ink/75"> · {formatSize(product.size)}</span>
             </p>
             {flavor && <p className="mt-1 text-sm text-ink/75">{flavor}</p>}
 
@@ -155,22 +160,30 @@ const ProductDrawer = ({ product, onClose }) => {
               </>
             )}
 
-            <h3 className="mt-6 text-sm font-semibold text-harbor">
-              {product.slug === "10-14-active" ? "Contenido" : "Ingredientes"}
-            </h3>
-            <p className="mt-2 leading-relaxed text-ink/85">{product.ingredients}</p>
+            <details className="group/details mt-6 rounded-xl bg-sage/60 px-4 py-3">
+              <summary className="cursor-pointer text-sm font-semibold text-harbor">
+                {product.slug === "10-14-active" ? "Contenido" : "Ingredientes"}
+              </summary>
+              <p className="mt-2 leading-relaxed text-ink/85">{product.ingredients}</p>
+              {product.notes?.map((note) => (
+                <p key={note} className="mt-3 text-sm text-ink/70">
+                  {note}
+                </p>
+              ))}
+            </details>
 
-            {product.notes?.map((note) => (
-              <p key={note} className="mt-4 text-sm text-ink/70">
-                {note}
-              </p>
-            ))}
+            <p className="mt-6 text-xs leading-relaxed text-ink/70">
+              Estas declaraciones no han sido evaluadas por la FDA. Estos
+              productos no están destinados a diagnosticar, tratar, curar o
+              prevenir ninguna enfermedad.
+            </p>
           </div>
 
           <div className="sticky bottom-0 border-t border-harbor/[0.08] bg-white px-5 py-4 sm:px-8">
             <BuyButton product={product} className="w-full !py-3.5 !text-base" />
             <p className="mt-2 text-center text-xs text-ink/70">
-              Se abre la tienda oficial de FuXion en una pestaña nueva.
+              Se abre la tienda oficial de FuXion (en inglés) en una pestaña
+              nueva. Verás a Andrés Rosa como tu patrocinador.
             </p>
           </div>
         </div>
@@ -182,14 +195,26 @@ const ProductDrawer = ({ product, onClose }) => {
 const Catalog = () => {
   const [filter, setFilter] = useState("todos");
   const [selected, setSelected] = useState(null);
+  const barRef = useRef(null);
+  const resultsRef = useRef(null);
 
   const visibleLines = productLines.filter(
     (line) => filter === "todos" || line.id === filter
   );
   const chips = [{ id: "todos", chip: "Todos" }, ...productLines];
 
+  const choose = (id) => {
+    setFilter(id);
+    const results = resultsRef.current;
+    if (!results) return;
+    const offset = HEADER_HEIGHT + (barRef.current?.offsetHeight ?? 0) + 8;
+    const top = results.getBoundingClientRect().top + window.scrollY - offset;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.scrollTo({ top, behavior: reduce ? "auto" : "smooth" });
+  };
+
   return (
-    <section id="catalogo" aria-labelledby="catalogo-title" className="pb-20 md:pb-28">
+    <section id="catalogo" aria-labelledby="catalogo-title" className="pb-24 md:pb-28">
       <div className="page-x">
         <h2
           id="catalogo-title"
@@ -199,31 +224,40 @@ const Catalog = () => {
         </h2>
 
         <div
-          role="group"
-          aria-label="Filtrar por línea"
-          className="no-scrollbar -mx-5 mt-6 flex gap-2 overflow-x-auto px-5 pb-1 sm:mx-0 sm:flex-wrap sm:px-0"
+          ref={barRef}
+          className="sticky top-[72px] z-20 -mx-5 mt-4 bg-sage/95 px-5 py-3 backdrop-blur sm:-mx-8 sm:px-8 lg:mx-0 lg:px-0"
         >
-          {chips.map((chip) => {
-            const active = filter === chip.id;
-            return (
-              <button
-                key={chip.id}
-                type="button"
-                aria-pressed={active}
-                onClick={() => setFilter(chip.id)}
-                className={`shrink-0 rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
-                  active
-                    ? "bg-leaf text-white"
-                    : "bg-white text-harbor ring-1 ring-inset ring-leaf/20 hover:ring-leaf/50"
-                }`}
-              >
-                {chip.chip}
-              </button>
-            );
-          })}
+          <div
+            role="group"
+            aria-label="Filtrar por línea"
+            className="no-scrollbar flex gap-2 overflow-x-auto pr-8 lg:flex-wrap lg:pr-0"
+          >
+            {chips.map((chip) => {
+              const active = filter === chip.id;
+              return (
+                <button
+                  key={chip.id}
+                  type="button"
+                  aria-pressed={active}
+                  onClick={() => choose(chip.id)}
+                  className={`min-h-11 shrink-0 rounded-full px-4 text-sm font-semibold transition-colors ${
+                    active
+                      ? "bg-leaf text-white"
+                      : "bg-white text-harbor ring-1 ring-inset ring-leaf/20 hover:ring-leaf/50"
+                  }`}
+                >
+                  {chip.chip}
+                </button>
+              );
+            })}
+          </div>
+          <span
+            className="pointer-events-none absolute inset-y-0 right-0 w-8 bg-gradient-to-r from-transparent to-sage lg:hidden"
+            aria-hidden="true"
+          />
         </div>
 
-        <div className="mt-10 space-y-16">
+        <div ref={resultsRef} className="mt-8 space-y-14 sm:space-y-16">
           {visibleLines.map((line) => {
             const items = products.filter((p) => p.line === line.id);
             return (
@@ -237,7 +271,7 @@ const Catalog = () => {
                     {items.length} {items.length === 1 ? "producto" : "productos"}
                   </span>
                 </h3>
-                <ul className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                <ul className="mt-6 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3">
                   {items.map((product) => (
                     <ProductCard key={product.slug} product={product} onOpen={setSelected} />
                   ))}
