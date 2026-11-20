@@ -65,7 +65,7 @@ export const services = [
     title: "Consulting",
     benefit: "Senior expertise, on call when you need it.",
     description:
-      "More than 25 years of successful, high-performance professionals who have worked with leading global organizations in the USA and abroad, available to you.",
+      "Specialists in marketing, finance, accounting and real estate, available to your business.",
     details: [
       "Marketing",
       "Financial advisory",
@@ -104,9 +104,26 @@ export const services = [
     benefit: "An online presence that works for your business.",
     description:
       "Elevate your business in the digital era. Our developers create a captivating online presence that engages your audience, drives growth and achieves tangible results.",
+    // TODO(client): what a website project includes. The toggle stays hidden
+    // while this list is empty.
     details: [],
   },
 ];
+
+// "Who's behind RDR". The section renders only once the founder's name, title,
+// bio and photo are all filled in.
+export const trust = {
+  lead: "More than 25 years of successful, high-performance professionals who have worked with leading global organizations in the USA and abroad.",
+  founder: {
+    name: null, // TODO(client)
+    title: null, // TODO(client)
+    bio: null, // TODO(client): about three lines
+    photo: null, // TODO(client): path under /public, 4:5 portrait
+  },
+  // TODO(client): e.g. { value: "...", label: "Years in business" },
+  // markets served, number of brands. Shown only when all three exist.
+  facts: [],
+};
 
 export const steps = [
   {
