@@ -67,7 +67,7 @@ const Hero = () => {
             className="hero-rise max-w-[14ch] font-serif text-[2.75rem] leading-[1.02] tracking-[-0.02em] text-harbor sm:text-6xl md:text-[3.6rem] lg:text-[5.25rem]"
             style={{ animationDelay: "80ms" }}
           >
-            Boosting growth with fast and affordable solutions
+            Boosting growth with fast, simple solutions
           </h1>
           <p
             className="hero-rise mt-6 max-w-[34ch] text-lg leading-relaxed text-ink/80 sm:text-xl"

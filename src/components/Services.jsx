@@ -8,17 +8,15 @@ import {
   PiLightbulb,
   PiPlus,
   PiTruck,
-  PiUsersThree,
 } from "react-icons/pi";
 
-import { mission, services } from "@/content/site";
+import { services, servicesIntro } from "@/content/site";
 
 const icons = {
   consulting: PiHandshake,
   "commercial-execution": PiLightbulb,
   "sourcing-strategies": PiTruck,
   websites: PiBrowser,
-  "business-partners": PiUsersThree,
 };
 
 const ServiceRow = ({ service }) => {
@@ -103,7 +101,7 @@ const Services = () => {
             Our services
           </h2>
           <p className="max-w-[46ch] text-lg leading-relaxed text-ink/75 md:col-span-5">
-            {mission}
+            {servicesIntro}
           </p>
         </div>
 

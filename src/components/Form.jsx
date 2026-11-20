@@ -13,20 +13,30 @@ const copy = {
     title: "Let's get in touch",
     intro:
       "If you have an idea or project in mind and need help, reach out. We would love to hear about it and provide a solution.",
+    emailPlaceholder: "you@company.com",
+    messageLabel: "Message",
+    messagePlaceholder: "Tell us about your business or idea",
+    submit: "Start the conversation",
   },
   join: {
-    title: "Want to be part of our team?",
+    title: "Apply to join the team",
     intro:
       "We are always looking for talented people to join us. If you are a salesman and/or distributor, this is your opportunity to grow. Send us a message and join us today.",
+    emailPlaceholder: "you@email.com",
+    messageLabel: "Tell us about your experience",
+    messagePlaceholder:
+      "Sales or distribution experience, territories, brands you've worked with",
+    submit: "Send message",
   },
 };
 
-const Field = ({ formik, name, label, className = "", children }) => {
+const Field = ({ formik, name, label, optional = false, className = "", children }) => {
   const error = formik.touched[name] && formik.errors[name];
   return (
     <div className={className}>
       <label htmlFor={name} className="mb-2 block text-sm font-semibold text-harbor">
         {label}
+        {optional && <span className="font-normal text-ink/60"> (optional)</span>}
       </label>
       {children({
         id: name,
@@ -35,7 +45,7 @@ const Field = ({ formik, name, label, className = "", children }) => {
         onChange: formik.handleChange,
         onBlur: formik.handleBlur,
         disabled: formik.isSubmitting,
-        required: true,
+        required: !optional,
         "aria-invalid": Boolean(error),
         "aria-describedby": `${name}-error`,
         className: `field ${error ? "field-error" : ""}`,
@@ -79,7 +89,8 @@ const Form = ({ variant = "contact" }) => {
     },
   });
 
-  const { title, intro } = copy[variant];
+  const { title, intro, emailPlaceholder, messageLabel, messagePlaceholder, submit } =
+    copy[variant];
 
   return (
     <div className="page-x grid gap-12 py-14 md:py-20 lg:grid-cols-12 lg:gap-16">
@@ -144,11 +155,11 @@ const Form = ({ variant = "contact" }) => {
                   inputMode="email"
                   autoCapitalize="off"
                   spellCheck="false"
-                  placeholder="you@company.com"
+                  placeholder={emailPlaceholder}
                 />
               )}
             </Field>
-            <Field formik={formik} name="phone" label="Phone number">
+            <Field formik={formik} name="phone" label="Phone number" optional>
               {(props) => (
                 <input
                   {...props}
@@ -161,9 +172,9 @@ const Form = ({ variant = "contact" }) => {
             </Field>
           </div>
 
-          <Field formik={formik} name="message" label="Message">
+          <Field formik={formik} name="message" label={messageLabel}>
             {(props) => (
-              <textarea {...props} rows={6} placeholder="Tell us about your business or idea" />
+              <textarea {...props} rows={6} placeholder={messagePlaceholder} />
             )}
           </Field>
 
@@ -172,7 +183,7 @@ const Form = ({ variant = "contact" }) => {
             disabled={formik.isSubmitting}
             className="btn-signal mt-2 w-full disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
           >
-            {formik.isSubmitting ? "Sending…" : "Send message"}
+            {formik.isSubmitting ? "Sending…" : submit}
           </button>
         </form>
       </div>

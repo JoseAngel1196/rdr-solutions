@@ -19,7 +19,7 @@ const newsreader = Newsreader({
 
 const title = "RDR Solutions — Business services for growing brands";
 const description =
-  "Boosting growth with fast and affordable solutions designed to fit your business needs. Consulting, commercial execution, sourcing strategies and website development.";
+  "Boosting growth with fast solutions designed to fit your business needs. Consulting, commercial execution, sourcing strategies and website development.";
 
 export const metadata = {
   metadataBase: new URL("https://rdrsolution.com"),

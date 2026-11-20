@@ -102,9 +102,13 @@ const EmailTemplate = ({
 
                 <Text>
                   <strong>Phone: </strong>
-                  <Link href={`tel:${phone}`} className="text-white underline">
-                    {phone}
-                  </Link>
+                  {phone ? (
+                    <Link href={`tel:${phone}`} className="text-white underline">
+                      {phone}
+                    </Link>
+                  ) : (
+                    "Not provided"
+                  )}
                 </Text>
 
                 <Text>

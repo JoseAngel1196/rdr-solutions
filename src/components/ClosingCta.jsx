@@ -1,10 +1,8 @@
-import Image from "next/image";
 import Link from "next/link";
 
 import { PiEnvelopeSimple, PiMapPin, PiPhone } from "react-icons/pi";
 
 import { contact } from "@/content/site";
-import SocialLinks from "./SocialLinks";
 
 const ClosingCta = () => {
   return (
@@ -13,15 +11,8 @@ const ClosingCta = () => {
       aria-labelledby="closing-title"
       className="on-dark relative isolate overflow-hidden bg-harbor py-24 text-white md:py-32"
     >
-      <Image
-        src="/assets/images/photos/retail-aisle.jpg"
-        alt=""
-        fill
-        sizes="100vw"
-        className="-z-10 object-cover opacity-[0.18] mix-blend-luminosity"
-      />
       <div
-        className="absolute inset-0 -z-10 bg-gradient-to-r from-harbor via-harbor/90 to-harbor/60"
+        className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_80%_20%,rgba(98,150,220,0.18),transparent_60%)]"
         aria-hidden="true"
       />
 
@@ -79,7 +70,6 @@ const ClosingCta = () => {
               </a>
             </li>
           </ul>
-          <SocialLinks className="mt-8" tone="dark" />
         </div>
       </div>
     </section>

@@ -46,8 +46,10 @@ const Footer = () => {
         <SocialLinks tone="dark" />
       </div>
 
-      <div className="page-x border-t border-white/10 py-6 text-sm text-white/60">
-        Copyright © <CurrentYear /> RDR Solutions, LLC
+      <div className="page-x">
+        <div className="border-t border-white/10 py-6 text-sm text-white/60">
+          Copyright © <CurrentYear /> RDR Solutions, LLC
+        </div>
       </div>
     </footer>
   );

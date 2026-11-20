@@ -1,10 +1,7 @@
 // Single source for the site's copy and links, so sections stay consistent.
 
-export const tagline =
-  "Boosting growth with fast and affordable solutions designed to fit your business needs.";
-
-export const mission =
-  "Our mission is to give you simple solutions according to your needs, priorities and affordable to your unique situation.";
+export const servicesIntro =
+  "Simple solutions built around your needs, your priorities and your budget.";
 
 export const contact = {
   email: "info@rdrsolution.com",
@@ -19,7 +16,7 @@ export const socials = [
   { name: "Facebook", href: "https://www.facebook.com/rdrsolutions/" },
   {
     name: "X (Twitter)",
-    href: "https://twitter.com/llcrdr630?s=11&t=FRwx8M6iJRKTDiuo61CEpw",
+    href: "https://x.com/llcrdr630",
   },
   {
     name: "LinkedIn",
@@ -93,25 +90,11 @@ export const services = [
   },
   {
     id: "websites",
-    title: "Development of Websites",
+    title: "Website development",
     benefit: "An online presence that works for your business.",
     description:
       "Elevate your business in the digital era. Our developers create a captivating online presence that engages your audience, drives growth and achieves tangible results.",
     details: [],
-  },
-  {
-    id: "business-partners",
-    title: "Our Business Partners",
-    benefit: "Global, regional and local brands in one network.",
-    description:
-      "Strong distribution representing global brands alongside strong regional and local brands.",
-    details: [
-      "Oral care",
-      "Personal care",
-      "Laundry and home care",
-      "Food & grocery",
-      "Fresh produce",
-    ],
   },
 ];
 
@@ -122,7 +105,7 @@ export const steps = [
   },
   {
     title: "Plan",
-    text: "We shape a simple solution that is affordable for your business.",
+    text: "We shape a simple solution that fits your budget.",
   },
   {
     title: "Execute",
@@ -130,7 +113,7 @@ export const steps = [
   },
   {
     title: "Grow",
-    text: "Fast, affordable solutions that keep your business growing.",
+    text: "Fast, simple solutions that keep your business growing.",
   },
 ];
 
