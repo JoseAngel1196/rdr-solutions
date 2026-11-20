@@ -17,9 +17,9 @@ const newsreader = Newsreader({
   display: "swap",
 });
 
-const title = "RDR Solutions — Business services for growing brands";
+const title = "RDR Solutions — From the factory to the shelf, one partner";
 const description =
-  "Boosting growth with fast solutions designed to fit your business needs. Consulting, commercial execution, sourcing strategies and website development.";
+  "Consulting, commercial execution and sourcing for consumer brands that want to grow in retail, plus the website to match.";
 
 export const metadata = {
   metadataBase: new URL("https://rdrsolution.com"),

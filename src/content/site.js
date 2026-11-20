@@ -32,21 +32,21 @@ export const navLinks = [
   { label: "Shop", href: "/shop", hidden: true },
 ];
 
-// `ratio` is width / height of the trimmed logo file; used to size logos by area.
+// `ratio` is width / height of the trimmed logo file.
 export const brands = [
-  { name: "Colgate", file: "Colgate_logo.webp", ratio: 3.95 },
-  { name: "Palmolive", file: "Palmolive_logo.webp", ratio: 3.25 },
-  { name: "Fabuloso", file: "Fabuloso_logo.webp", ratio: 2.33 },
-  { name: "Ajax", file: "Ajax_logo.webp", ratio: 1.21 },
-  { name: "Suavitel", file: "Suavitel_logo.webp", ratio: 2.15 },
-  { name: "Fiori Bruna", file: "Fiori_Bruna_Logo.webp", ratio: 8.35 },
-  { name: "Bambú", file: "Bambu_logo.webp", ratio: 2.8 },
-  { name: "Guarina", file: "Guarina_logo.webp", ratio: 1.45 },
-  { name: "Lavador", file: "Lavador_logo.webp", ratio: 3.36 },
-  { name: "Magnifico", file: "Magnifico_logo.webp", ratio: 1.93 },
-  { name: "L'Dorado", file: "LDorado_logo.webp", ratio: 1.43 },
-  { name: "Ardil", file: "Ardil_logo.webp", ratio: 2.84 },
-  { name: "Tips Calbaq", file: "Tips_calbaq_logo.webp", ratio: 1.67 },
+  { name: "Colgate", file: "Colgate_logo.webp", ratio: 3.95, group: "global" },
+  { name: "Palmolive", file: "Palmolive_logo.webp", ratio: 3.25, group: "global" },
+  { name: "Fabuloso", file: "Fabuloso_logo.webp", ratio: 2.33, group: "global" },
+  { name: "Ajax", file: "Ajax_logo.webp", ratio: 1.21, group: "global" },
+  { name: "Suavitel", file: "Suavitel_logo.webp", ratio: 2.15, group: "global" },
+  { name: "Fiori Bruna", file: "Fiori_Bruna_Logo.webp", ratio: 8.35, group: "regional" },
+  { name: "Bambú", file: "Bambu_logo.webp", ratio: 2.8, group: "regional" },
+  { name: "Guarina", file: "Guarina_logo.webp", ratio: 1.45, group: "regional" },
+  { name: "Lavador", file: "Lavador_logo.webp", ratio: 3.36, group: "regional" },
+  { name: "Magnifico", file: "Magnifico_logo.webp", ratio: 1.93, group: "regional" },
+  { name: "L'Dorado", file: "LDorado_logo.webp", ratio: 1.43, group: "regional" },
+  { name: "Ardil", file: "Ardil_logo.webp", ratio: 2.84, group: "regional" },
+  { name: "Tips Calbaq", file: "Tips_calbaq_logo.webp", ratio: 1.67, group: "regional" },
 ];
 
 export const services = [

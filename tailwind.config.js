@@ -20,7 +20,7 @@ module.exports = {
         serif: ["var(--font-newsreader)", "Georgia", "serif"],
       },
       maxWidth: {
-        page: "78rem",
+        page: "80rem",
       },
       screens: {
         "3xl": "2000px",
