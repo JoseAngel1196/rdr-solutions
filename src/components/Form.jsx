@@ -36,7 +36,7 @@ const Field = ({ formik, name, label, optional = false, className = "", children
     <div className={className}>
       <label htmlFor={name} className="mb-2 block text-sm font-semibold text-harbor">
         {label}
-        {optional && <span className="font-normal text-ink/60"> (optional)</span>}
+        {optional && <span className="font-normal text-ink/75"> (optional)</span>}
       </label>
       {children({
         id: name,

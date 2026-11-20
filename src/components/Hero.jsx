@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { brands } from "@/content/site";
+import { brands, photos } from "@/content/site";
 
 const globalBrands = brands.filter((brand) => brand.group === "global");
 
@@ -20,13 +20,14 @@ const LogoMark = () => (
     >
       <div className="mark-photo absolute inset-0">
         <Image
-          src="/assets/images/photos/warehouse-aisle.jpg"
+          src={photos.hero.src}
           alt=""
           fill
           priority
           sizes="(min-width: 1280px) 560px, (min-width: 1024px) 420px, (min-width: 640px) 300px, 245px"
           quality={55}
-          className="object-cover object-[50%_30%]"
+          className="object-cover"
+          style={{ objectPosition: photos.hero.position }}
         />
         <div className="absolute inset-0 bg-brand/25 mix-blend-multiply" />
       </div>

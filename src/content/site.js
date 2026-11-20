@@ -44,6 +44,17 @@ export const navLinks = [
   { label: "Shop", href: "/shop", hidden: true },
 ];
 
+// Every photo on the site comes from here, so swapping one is a one-line change.
+// TODO(client): replace the Unsplash stock shot with real photography (team,
+// warehouse, shelf sets, trade shows). `position` is the CSS object-position
+// used to frame it inside the logo-mark mask.
+export const photos = {
+  hero: {
+    src: "/assets/images/photos/warehouse-aisle.jpg",
+    position: "50% 30%",
+  },
+};
+
 // Content marked TODO(client) is waiting on real information from RDR.
 // Anything left null/empty renders nothing on the site.
 
