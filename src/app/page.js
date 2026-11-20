@@ -5,6 +5,7 @@ import Services from "@/components/Services";
 import HowWeWork from "@/components/HowWeWork";
 import Network from "@/components/Network";
 import ClosingCta from "@/components/ClosingCta";
+import TiendaTeaser from "@/components/TiendaTeaser";
 
 export default function Index() {
   return (
@@ -15,6 +16,7 @@ export default function Index() {
       <Services />
       <HowWeWork />
       <Network />
+      <TiendaTeaser />
       <ClosingCta />
     </>
   );

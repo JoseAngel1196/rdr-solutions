@@ -1,7 +1,7 @@
 const base = "https://rdrsolution.com";
 
 export default function sitemap() {
-  return ["", "/contact", "/join"].map((path) => ({
+  return ["", "/tienda", "/contact", "/join"].map((path) => ({
     url: `${base}${path}`,
     lastModified: new Date(),
     changeFrequency: "monthly",

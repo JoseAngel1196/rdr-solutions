@@ -2,12 +2,12 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import { PiList, PiX } from "react-icons/pi";
 
 import { navLinks } from "@/content/site";
+import SiteLink from "./SiteLink";
 
 const visibleLinks = navLinks.filter((link) => !link.hidden);
 
@@ -47,7 +47,7 @@ const Navbar = () => {
       }`}
     >
       <div className="page-x flex h-[4.5rem] items-center justify-between gap-6">
-        <Link href="/" aria-label="RDR Solutions home" className="shrink-0">
+        <SiteLink href="/" aria-label="RDR Solutions home" className="shrink-0">
           <Image
             src="/assets/images/Logo.webp"
             width={315}
@@ -56,24 +56,24 @@ const Navbar = () => {
             priority
             className="h-9 w-auto"
           />
-        </Link>
+        </SiteLink>
 
         <nav aria-label="Main" className="hidden md:block">
           <ul className="flex items-center gap-8">
             {visibleLinks.map((link) => (
               <li key={link.href}>
-                <Link
+                <SiteLink
                   href={link.href}
                   className="text-[0.95rem] font-medium text-harbor/80 transition-colors hover:text-brand"
                 >
                   {link.label}
-                </Link>
+                </SiteLink>
               </li>
             ))}
             <li>
-              <Link href="/contact" className="btn-signal !px-5 !py-2.5 text-sm">
+              <SiteLink href="/contact" className="btn-signal !px-5 !py-2.5 text-sm">
                 Get in touch
-              </Link>
+              </SiteLink>
             </li>
           </ul>
         </nav>
@@ -99,23 +99,23 @@ const Navbar = () => {
         <ul className="page-x flex flex-col gap-1 pt-6">
           {visibleLinks.map((link) => (
             <li key={link.href}>
-              <Link
+              <SiteLink
                 href={link.href}
                 onClick={() => setOpen(false)}
                 className="block border-b border-harbor/10 py-4 font-serif text-3xl text-harbor"
               >
                 {link.label}
-              </Link>
+              </SiteLink>
             </li>
           ))}
           <li className="pt-8">
-            <Link
+            <SiteLink
               href="/contact"
               onClick={() => setOpen(false)}
               className="btn-signal w-full"
             >
               Get in touch
-            </Link>
+            </SiteLink>
           </li>
         </ul>
       </nav>

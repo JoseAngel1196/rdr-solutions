@@ -1,8 +1,8 @@
 import Image from "next/image";
-import Link from "next/link";
 
 import { contact, navLinks } from "@/content/site";
 import CurrentYear from "./CurrentYear";
+import SiteLink from "./SiteLink";
 import SocialLinks from "./SocialLinks";
 
 const Footer = () => {
@@ -10,7 +10,7 @@ const Footer = () => {
     <footer className="on-dark border-t border-white/10 bg-harbor text-white/75">
       <div className="page-x flex flex-col gap-8 py-12 md:flex-row md:items-start md:justify-between">
         <div className="shrink-0">
-          <Link href="/" aria-label="RDR Solutions home" className="inline-block">
+          <SiteLink href="/" aria-label="RDR Solutions home" className="inline-block">
             <Image
               src="/assets/images/LogoBlue.webp"
               alt="RDR Solutions"
@@ -18,7 +18,7 @@ const Footer = () => {
               height={89}
               className="h-9 w-auto"
             />
-          </Link>
+          </SiteLink>
           <p className="mt-3 font-serif text-lg text-white">
             From the factory to the shelf.
           </p>
@@ -33,20 +33,20 @@ const Footer = () => {
               .filter((link) => !link.hidden)
               .map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="hover:text-white">
+                  <SiteLink href={link.href} className="hover:text-white">
                     {link.label}
-                  </Link>
+                  </SiteLink>
                 </li>
               ))}
             <li>
-              <Link href="/contact" className="hover:text-white">
+              <SiteLink href="/contact" className="hover:text-white">
                 Contact
-              </Link>
+              </SiteLink>
             </li>
             <li>
-              <Link href="/join" className="hover:text-white">
+              <SiteLink href="/join" className="hover:text-white">
                 Join our team
-              </Link>
+              </SiteLink>
             </li>
           </ul>
         </nav>

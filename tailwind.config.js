@@ -14,6 +14,10 @@ module.exports = {
         mist: "#EEF2F8",
         signal: "#F2B544",
         ink: "#24324F",
+        // Tienda (FuXion wellness catalog)
+        sage: "#EEF0E8",
+        sprout: "#DCE5D4",
+        leaf: "#2F5D46",
       },
       fontFamily: {
         sans: ["var(--font-figtree)", "system-ui", "sans-serif"],

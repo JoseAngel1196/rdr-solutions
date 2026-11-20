@@ -41,7 +41,7 @@ export const navLinks = [
   { label: "Brands", href: "/#brands" },
   { label: "Services", href: "/#services" },
   { label: "How we work", href: "/#how-we-work", hidden: processSteps.length === 0 },
-  { label: "Shop", href: "/shop", hidden: true },
+  { label: "Tienda", href: "/tienda" },
 ];
 
 // Every photo on the site comes from here, so swapping one is a one-line change.
