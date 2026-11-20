@@ -1,12 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
 
 import {
-  PiCaretDown,
-  PiCaretRight,
-  PiPersonSimpleWalk,
+  PiShoppingCart,
   PiStorefront,
   PiTruck,
   PiUserCircle,
@@ -20,11 +17,11 @@ const icons = {
   distribution: PiWarehouse,
   retailers: PiStorefront,
   customers: PiUserCircle,
-  consumers: PiPersonSimpleWalk,
+  shoppers: PiShoppingCart,
 };
 
-// Rebuilds the original supply-chain diagram: product flows left to right and
-// RDR connects to every link from underneath.
+// The supply chain as one line: product flows along the navy line, and RDR
+// (amber) runs underneath every link.
 const Network = () => {
   const ref = useRef(null);
   const [revealed, setRevealed] = useState(false);
@@ -52,74 +49,71 @@ const Network = () => {
       className="py-20 md:py-28"
     >
       <div className="page-x">
-        <div className="grid gap-6 md:grid-cols-12 md:items-end">
+        <div className="mx-auto max-w-3xl text-center">
           <h2
             id="network-title"
-            className="font-serif text-4xl leading-[1.05] tracking-[-0.015em] text-harbor md:col-span-7 md:text-[3.5rem]"
+            className="font-serif text-4xl leading-[1.05] tracking-[-0.015em] text-harbor md:text-[3.5rem]"
           >
             Connected to every link in your supply chain
           </h2>
-          <p className="max-w-[46ch] text-lg leading-relaxed text-ink/75 md:col-span-5">
-            From suppliers to the people who buy your products, RDR works
-            alongside each step to keep your business moving.
-          </p>
+          <ul className="mt-8 flex flex-wrap justify-center gap-x-8 gap-y-2 text-sm text-ink/75">
+            <li className="flex items-center gap-2">
+              <span className="h-0.5 w-8 bg-harbor" aria-hidden="true" />
+              Product flow
+            </li>
+            <li className="flex items-center gap-2">
+              <span className="h-2 w-8 rounded-full bg-signal" aria-hidden="true" />
+              RDR Solutions
+            </li>
+          </ul>
         </div>
 
-        <div ref={ref} data-revealed={revealed} className="mt-14">
-          <ol className="grid gap-3 lg:grid-cols-[repeat(5,minmax(0,1fr))] lg:gap-0">
+        <div ref={ref} data-revealed={revealed} className="relative mt-14">
+          {/* Rails: vertical on mobile, horizontal from md up. Node centres sit
+              at 28px (mobile x) and 10%..90% / 28px (desktop). */}
+          <span
+            className="absolute bottom-0 left-6 top-0 w-2 rounded-full bg-signal md:hidden"
+            aria-hidden="true"
+          />
+          <span
+            className="absolute bottom-7 left-[27px] top-7 w-0.5 bg-harbor md:hidden"
+            aria-hidden="true"
+          />
+          <span
+            className="absolute left-0 right-0 top-6 hidden h-2 rounded-full bg-signal md:block"
+            aria-hidden="true"
+          />
+          <span
+            className="absolute left-[10%] right-[10%] top-[27px] hidden h-0.5 bg-harbor md:block"
+            aria-hidden="true"
+          />
+
+          <ol className="relative grid gap-8 md:grid-cols-5 md:gap-4">
             {chain.map((node, i) => {
               const Icon = icons[node.id];
-              const last = i === chain.length - 1;
               return (
                 <li
                   key={node.id}
-                  className="chain-step relative flex flex-col items-center lg:px-3"
+                  className="chain-step flex items-center gap-5 md:flex-col md:items-center md:gap-4 md:text-center"
                   style={{ transitionDelay: `${i * 110}ms` }}
                 >
-                  <div className="flex w-full items-center gap-4 rounded-2xl lg:flex-1 bg-white px-5 py-4 ring-1 ring-harbor/10 lg:flex-col lg:gap-3 lg:px-4 lg:py-7 lg:text-center">
-                    <Icon size={32} className="shrink-0 text-brand" aria-hidden="true" />
-                    <span className="font-serif text-xl leading-tight text-harbor">
+                  <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border-2 border-harbor bg-white text-brand">
+                    <Icon size={26} aria-hidden="true" />
+                  </span>
+                  <div>
+                    <p className="font-serif text-xl leading-tight text-harbor">
                       {node.label}
-                    </span>
+                    </p>
+                    {node.description && (
+                      <p className="mt-1 text-base leading-snug text-ink/75">
+                        {node.description}
+                      </p>
+                    )}
                   </div>
-                  {!last && (
-                    <>
-                      <PiCaretDown
-                        className="my-1 text-sky lg:hidden"
-                        size={20}
-                        aria-hidden="true"
-                      />
-                      <PiCaretRight
-                        className="absolute -right-2.5 top-[3.75rem] hidden text-sky lg:block"
-                        size={20}
-                        aria-hidden="true"
-                      />
-                    </>
-                  )}
-                  <span
-                    className="hidden h-10 border-l-2 border-dotted border-brand/50 lg:block"
-                    aria-hidden="true"
-                  />
                 </li>
               );
             })}
           </ol>
-
-          <div
-            className="chain-step mt-6 flex flex-col items-center gap-4 rounded-2xl bg-harbor px-6 py-7 text-center lg:mx-3 lg:mt-0 lg:flex-row lg:justify-center lg:gap-6"
-            style={{ transitionDelay: "600ms" }}
-          >
-            <Image
-              src="/assets/images/LogoBlue.webp"
-              alt="RDR Solutions"
-              width={316}
-              height={89}
-              className="h-9 w-auto"
-            />
-            <p className="text-lg text-white/85">
-              works with each link, from sourcing to the shelf.
-            </p>
-          </div>
         </div>
       </div>
     </section>

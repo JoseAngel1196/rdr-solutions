@@ -24,11 +24,16 @@ export const socials = [
   },
 ];
 
+// TODO(client): the real step-by-step process, from first call to product on
+// shelf, as [{ title, text }]. "How we work" and its nav link stay hidden
+// while this is empty.
+export const processSteps = [];
+
 // `hidden: true` keeps a link reserved in the nav without showing it yet.
 export const navLinks = [
   { label: "Brands", href: "/#brands" },
   { label: "Services", href: "/#services" },
-  { label: "How we work", href: "/#how-we-work" },
+  { label: "How we work", href: "/#how-we-work", hidden: processSteps.length === 0 },
   { label: "Shop", href: "/shop", hidden: true },
 ];
 
@@ -125,29 +130,14 @@ export const trust = {
   facts: [],
 };
 
-export const steps = [
-  {
-    title: "Understand",
-    text: "We start with your needs, your priorities and your unique situation.",
-  },
-  {
-    title: "Plan",
-    text: "We shape a simple solution that fits your budget.",
-  },
-  {
-    title: "Execute",
-    text: "We put it to work through consulting, commercial execution, sourcing and the web.",
-  },
-  {
-    title: "Grow",
-    text: "Fast, simple solutions that keep your business growing.",
-  },
-];
-
+// TODO(client): a one-line description of RDR's role at each link
+// (`description`, renders only when filled). Also confirm what separates
+// "Customers" from the last link; it was "Consumers" and is shown as
+// "Shoppers" until clarified.
 export const chain = [
-  { id: "suppliers", label: "Suppliers" },
-  { id: "distribution", label: "Distribution network" },
-  { id: "retailers", label: "Retailers" },
-  { id: "customers", label: "Customers" },
-  { id: "consumers", label: "Consumers" },
+  { id: "suppliers", label: "Suppliers", description: null },
+  { id: "distribution", label: "Distribution network", description: null },
+  { id: "retailers", label: "Retailers", description: null },
+  { id: "customers", label: "Customers", description: null },
+  { id: "shoppers", label: "Shoppers", description: null },
 ];
