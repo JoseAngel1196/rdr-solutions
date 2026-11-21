@@ -25,7 +25,7 @@ const TiendaTeaser = () => {
               Shakes, teas and drinks from the FuXion catalog. Browse online
               and buy in FuXion&apos;s official store.
             </p>
-            <SiteLink href="/tienda" className="btn mt-6 bg-leaf text-white hover:bg-[#244a37]">
+            <SiteLink href="/tienda/en" className="btn mt-6 bg-leaf text-white hover:bg-[#244a37]">
               Visit La Tienda
               <PiArrowRight size={16} aria-hidden="true" />
             </SiteLink>

@@ -16,7 +16,7 @@ export const useSiteHref = () => {
 
   return (href) => {
     if (!onShopHost || !href.startsWith("/")) return href;
-    if (href === "/tienda") return "/";
+    if (href === "/tienda" || href.startsWith("/tienda/")) return href.slice(7) || "/";
     return `${MAIN_SITE}${href}`;
   };
 };

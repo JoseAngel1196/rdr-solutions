@@ -5,12 +5,8 @@ import Image from "next/image";
 
 import { PiArrowUpRight, PiX } from "react-icons/pi";
 
-import {
-  buyUrl,
-  formatPrice,
-  productLines,
-  products,
-} from "@/data/fuxion-products";
+import { buyUrl, formatPrice } from "@/data/fuxion-products";
+import { copy, localizedLines, localizedProducts } from "./locale";
 
 // Header (72px) + sticky chip bar; used to land results just below both.
 const HEADER_HEIGHT = 72;
@@ -18,22 +14,18 @@ const HEADER_HEIGHT = 72;
 // Keep the unit attached to its number ("5 g" never splits across lines).
 const formatSize = (size) => size.replace(/ g\b/g, " g");
 
-const flavorLabel = (flavor) =>
-  flavor.length > 1
-    ? `Sabores: ${flavor.join(" · ")}`
-    : flavor.length
-      ? `Sabor ${flavor[0].toLowerCase()}`
-      : null;
+const flavorLabel = (flavor, t) =>
+  flavor.length > 1 ? t.flavors(flavor) : flavor.length ? t.flavor(flavor[0]) : null;
 
-const BuyButton = ({ product, className = "" }) => (
+const BuyButton = ({ product, t, className = "" }) => (
   <a
     href={buyUrl(product)}
     target="_blank"
     rel="noopener noreferrer"
-    aria-label={`Comprar ${product.name} en la tienda oficial de FuXion (se abre en una pestaña nueva)`}
+    aria-label={t.buyLabel(product.name)}
     className={`btn min-h-11 bg-leaf !px-5 !py-2.5 text-sm text-white hover:bg-[#244a37] ${className}`}
   >
-    Comprar
+    {t.buy}
     <PiArrowUpRight size={16} aria-hidden="true" />
   </a>
 );
@@ -51,7 +43,7 @@ const ProductImage = ({ product, sizes, className = "" }) => (
   </div>
 );
 
-const ProductCard = ({ product, onOpen }) => (
+const ProductCard = ({ product, t, onOpen }) => (
   <li className="group relative flex flex-col overflow-hidden rounded-[20px] border border-harbor/[0.08] bg-white">
     <ProductImage
       product={product}
@@ -74,7 +66,7 @@ const ProductCard = ({ product, onOpen }) => (
         className="mt-3 hidden text-sm font-semibold text-brand underline-offset-4 group-hover:underline sm:inline"
         aria-hidden="true"
       >
-        Ver detalles
+        {t.details}
       </span>
     </div>
     <div className="relative z-10 flex flex-col gap-3 px-3 pb-3 sm:flex-row sm:items-center sm:justify-between sm:border-t sm:border-harbor/[0.08] sm:px-6 sm:py-4">
@@ -84,12 +76,12 @@ const ProductCard = ({ product, onOpen }) => (
         </span>
         <span className="whitespace-nowrap text-xs sm:text-sm">{formatSize(product.size)}</span>
       </p>
-      <BuyButton product={product} className="w-full sm:w-auto" />
+      <BuyButton product={product} t={t} className="w-full sm:w-auto" />
     </div>
   </li>
 );
 
-const ProductDrawer = ({ product, onClose }) => {
+const ProductDrawer = ({ product, t, onClose }) => {
   const ref = useRef(null);
 
   useEffect(() => {
@@ -106,7 +98,7 @@ const ProductDrawer = ({ product, onClose }) => {
     return () => dialog?.removeEventListener("close", handleClose);
   }, [onClose]);
 
-  const flavor = product ? flavorLabel(product.flavor) : null;
+  const flavor = product ? flavorLabel(product.flavor, t) : null;
 
   return (
     <dialog
@@ -122,7 +114,7 @@ const ProductDrawer = ({ product, onClose }) => {
               type="button"
               onClick={() => ref.current.close()}
               className="flex h-11 w-11 items-center justify-center rounded-full text-harbor hover:bg-sage"
-              aria-label="Cerrar"
+              aria-label={t.close}
             >
               <PiX size={24} aria-hidden="true" />
             </button>
@@ -147,7 +139,7 @@ const ProductDrawer = ({ product, onClose }) => {
             {product.benefits.length > 0 && (
               <>
                 <h3 className="mt-6 text-sm font-semibold text-harbor">
-                  Según el catálogo FuXion, ayuda a:
+                  {t.benefitsHeading}
                 </h3>
                 <ul className="mt-3 space-y-2">
                   {product.benefits.map((benefit) => (
@@ -162,7 +154,7 @@ const ProductDrawer = ({ product, onClose }) => {
 
             <details className="group/details mt-6 rounded-xl bg-sage/60 px-4 py-3">
               <summary className="cursor-pointer text-sm font-semibold text-harbor">
-                {product.slug === "10-14-active" ? "Contenido" : "Ingredientes"}
+                {product.slug === "10-14-active" ? t.contents : t.ingredients}
               </summary>
               <p className="mt-2 leading-relaxed text-ink/85">{product.ingredients}</p>
               {product.notes?.map((note) => (
@@ -172,19 +164,12 @@ const ProductDrawer = ({ product, onClose }) => {
               ))}
             </details>
 
-            <p className="mt-6 text-xs leading-relaxed text-ink/70">
-              Estas declaraciones no han sido evaluadas por la FDA. Estos
-              productos no están destinados a diagnosticar, tratar, curar o
-              prevenir ninguna enfermedad.
-            </p>
+            <p className="mt-6 text-xs leading-relaxed text-ink/70">{t.fda}</p>
           </div>
 
           <div className="sticky bottom-0 border-t border-harbor/[0.08] bg-white px-5 py-4 sm:px-8">
-            <BuyButton product={product} className="w-full !py-3.5 !text-base" />
-            <p className="mt-2 text-center text-xs text-ink/70">
-              Se abre la tienda oficial de FuXion (en inglés) en una pestaña
-              nueva. Verás a Andrés Rosa como tu patrocinador.
-            </p>
+            <BuyButton product={product} t={t} className="w-full !py-3.5 !text-base" />
+            <p className="mt-2 text-center text-xs text-ink/70">{t.storeNote}</p>
           </div>
         </div>
       )}
@@ -192,7 +177,10 @@ const ProductDrawer = ({ product, onClose }) => {
   );
 };
 
-const Catalog = () => {
+const Catalog = ({ locale = "es" }) => {
+  const t = copy[locale];
+  const products = localizedProducts(locale);
+  const productLines = localizedLines(locale);
   const [filter, setFilter] = useState("todos");
   const [selected, setSelected] = useState(null);
   const barRef = useRef(null);
@@ -201,7 +189,7 @@ const Catalog = () => {
   const visibleLines = productLines.filter(
     (line) => filter === "todos" || line.id === filter
   );
-  const chips = [{ id: "todos", chip: "Todos" }, ...productLines];
+  const chips = [{ id: "todos", chip: t.all }, ...productLines];
 
   const choose = (id) => {
     setFilter(id);
@@ -220,7 +208,7 @@ const Catalog = () => {
           id="catalogo-title"
           className="font-serif text-4xl leading-[1.05] tracking-[-0.015em] text-harbor md:text-[3.25rem]"
         >
-          Catálogo
+          {t.catalog}
         </h2>
 
         <div
@@ -229,7 +217,7 @@ const Catalog = () => {
         >
           <div
             role="group"
-            aria-label="Filtrar por línea"
+            aria-label={t.filterLabel}
             className="no-scrollbar flex gap-2 overflow-x-auto pr-8 lg:flex-wrap lg:pr-0"
           >
             {chips.map((chip) => {
@@ -268,12 +256,12 @@ const Catalog = () => {
                 >
                   {line.name}
                   <span className="font-sans text-sm font-normal text-ink/70">
-                    {items.length} {items.length === 1 ? "producto" : "productos"}
+                    {t.count(items.length)}
                   </span>
                 </h3>
                 <ul className="mt-6 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3">
                   {items.map((product) => (
-                    <ProductCard key={product.slug} product={product} onOpen={setSelected} />
+                    <ProductCard key={product.slug} product={product} t={t} onOpen={setSelected} />
                   ))}
                 </ul>
               </section>
@@ -282,7 +270,7 @@ const Catalog = () => {
         </div>
       </div>
 
-      <ProductDrawer product={selected} onClose={() => setSelected(null)} />
+      <ProductDrawer product={selected} t={t} onClose={() => setSelected(null)} />
     </section>
   );
 };

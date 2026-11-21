@@ -350,7 +350,6 @@ export const products: FuxionProduct[] = [
     size: "Doypack · 28 × 5 g",
     flavor: ["Té manzana y canela"],
     image: "/tienda/nocarb-t.webp",
-    notes: [DIETA],
   },
   {
     slug: "cafe-cafe-fit",
